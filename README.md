@@ -7,6 +7,40 @@ The NHL has a poorly documented API that has a lot of information available in i
 ## Usage
 Initially this API will be a dumb wrapper only, calling the API and returning the data as a json object as recieved. Future versions may initiate data cleaning or other manipulations. 
 
+## API Coverage
+
+The following items are / will be covered by this API:
+
+### STATS
+
+- [ ] Teams
+- [x] Divisions
+- [x] Conferences
+- [ ] People
+- [ ] Game-IDs
+- [ ] Schedule
+- [ ] Standings
+- [ ] ~~Standings Types~~
+- [ ] ~~Stats Types~~
+- [ ] Team Stats
+- [x] Draft
+- [x] Prospects
+- [x] Awards
+
+*Stats Types and Standings Types are modifiers for People and Standings and Team Stats and won't be public facing*
+
+### RECORDS
+
+- [ ] Attendance
+- [ ] Draft
+- [ ] Records
+- [ ] Franchise
+- [ ] Player
+- [ ] Playoffs
+- [ ] Trophy
+- [ ] Milestones
+- [ ] Officials
+
 ## Copyright
 All data, teams, logos, and information is copyright NHL and its teams, with compliance to the copyright statement recieved from each API call. 
 
