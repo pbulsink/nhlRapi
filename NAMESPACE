@@ -3,4 +3,5 @@
 export(getAPI)
 export(getAward)
 export(getConference)
+export(getDivision)
 export(querybuilder)
