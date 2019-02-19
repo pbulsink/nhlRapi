@@ -17,3 +17,4 @@ response parsed by jsonlite
 \description{
 Base API calling code for internal use. Use specific endpoints to build queries in recognized fasion.
 }
+\keyword{internal}

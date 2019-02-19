@@ -7,6 +7,7 @@
 #'
 #' @return response parsed by jsonlite
 #' @export
+#' @keywords internal
 getAPI <- function(query, modifiers = NULL){
 
   base_uri<-"https://statsapi.web.nhl.com/api/v1/"
@@ -21,15 +22,13 @@ getAPI <- function(query, modifiers = NULL){
 
   response<-httr::GET(call_url)
 
-  if(response$status_code != 200){
-    stop("Problem with calling the API with query ", call_url, ". Response: ", httr::content(response))
-  }
+  httr::stop_for_status(response)
 
   response_content<-rawToChar(httr::content(response, 'raw'))
 
   json_response <- jsonlite::fromJSON(response_content)
 
-  return(response)
+  return(json_response)
 }
 
 
