@@ -19,3 +19,24 @@ getDraft <- function(year = NULL) {
   }
   return(getAPI(query = query))
 }
+
+#' Get Prospect
+#'
+#' @description Get the NHL draft prospects for the current year, or get one single prospect
+#'
+#' @param prospect Optional, get specific prospect information.
+#'
+#' @return The API output of prospects
+#' @export
+getProspect <- function(prospect = NULL) {
+  if(!is.null(prospect)) {
+    #checks to prevent bad API calls from progressing
+    stopifnot(length(prospect) == 1)
+    stopifnot(is.numeric(prospect))
+
+    query <- querybuilder('draft', 'prospects', prospect)
+  } else {
+    query <- querybuilder('draft', 'prospects')
+  }
+  return(getAPI(query = query))
+}
