@@ -1,13 +1,13 @@
 Package: nhlRapi
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: R Interface to the NHL API
+Version: 0.0.0.0001
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Philip",
+           family = "Bulsink",
            role = c("aut", "cre"),
-           email = "first.last@example.com")
-Description: What the package does (one paragraph).
-License: What license it uses
+           email = "bulsinkp@gmail.com")
+Description: This package provides an R interface to the free NHL API. The API is poorly documented and not publicised by the NHL; the API may disappear at any time without warning. 
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
