@@ -32,6 +32,11 @@ getTeam <- function(team = NULL, modifier = NULL, season = NULL) {
     }
     query <- querybuilder('teams', team)
   } else {
+    #No modifiers or season for all teams call.
+
+    stopifnot(is.null(modifier))
+    stopifnot(is.null(season))
+
     query <- 'teams'
   }
   return(getAPI(query = query, modifiers = modifier))
