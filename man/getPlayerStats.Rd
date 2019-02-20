@@ -9,20 +9,8 @@ getPlayerStats(player, stat = NULL, season = NULL)
 \arguments{
 \item{player}{The player ID to get stats}
 
-\item{stat}{The speific stats to get. Many options exist:
-- statsSingleSeason - Also provide a season
-- homeAndAway - Split by home and away games
-- winLoss - Split stats by win/loss/tie outcome
-- byMonth -
-- byDayOfWeek -
-- vsDivision - split stats by division of opponent
-- vsConference - split stats by conference of opponent
-- vsTeam - split stats by opponent team
-- gameLog - provides game by game log of stats
-- regularSeasonStatRankings - provides ranking of each stat in season
-- goalsByGameSituation
-- onPaceRegularSeason - only works for current season, shows pace projected
-@param season a season, if required or desired, for querying stats}
+\item{stat}{The speific stats to get. Many options exist, see \code[getPlayerStatTypes()] for full list
+@param season a season, if required or desired, for querying stats. Format: 20172018 for the 2017-2018 season}
 }
 \value{
 The API output of player

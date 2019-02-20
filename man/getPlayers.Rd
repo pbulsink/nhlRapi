@@ -13,5 +13,5 @@ getPlayers(player = NULL)
 The API output of player
 }
 \description{
-Get NHL players basic info, including historical players.
+Get NHL players basic info & stats, including historical players.
 }
