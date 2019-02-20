@@ -13,7 +13,7 @@ The following items are / will be covered by this API:
 
 ### STATS
 
-- [ ] Teams
+- [x] Teams
 - [x] Divisions
 - [x] Conferences
 - [ ] People
