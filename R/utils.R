@@ -13,15 +13,21 @@ querybuilder<-function(...) {
 }
 
 validSeason<-function(season) {
-  seasons<-c(1920:getCurrentSeason())
+  if(as.numeric(strftime(Sys.Date(), '%m'))<8){
+    year<-as.numeric(strftime(Sys.Date(), '%Y'))-1
+  } else {
+    year<-as.numeric(strftime(Sys.Date(), '%Y'))
+  }
+  seasons<-c(1920:year)
   seasons<-as.numeric(paste0(seasons, seasons+1))
   return(season %in% seasons)
 }
 
 getCurrentSeason<-function(){
   if(as.numeric(strftime(Sys.Date(), '%m'))<8){
-    return(as.numeric(strftime(Sys.Date(), '%Y'))-1)
+    year<-as.numeric(strftime(Sys.Date(), '%Y'))-1
   } else {
-    return(as.numeric(strftime(Sys.Date(), '%Y')))
+    year<-as.numeric(strftime(Sys.Date(), '%Y'))
   }
+  return(as.numeric(paste0(year, year+1)))
 }
