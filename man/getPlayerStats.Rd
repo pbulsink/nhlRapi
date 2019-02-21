@@ -9,8 +9,9 @@ getPlayerStats(player, stat = NULL, season = NULL)
 \arguments{
 \item{player}{The player ID to get stats}
 
-\item{stat}{The speific stats to get. Many options exist, see \code[getPlayerStatTypes()] for full list
-@param season a season, if required or desired, for querying stats. Format: 20172018 for the 2017-2018 season}
+\item{stat}{The speific stats to get. Many options exist, see \code{\link{getPlayerStatTypes}()} for full list}
+
+\item{season}{a season, if required or desired, for querying stats. Format: 20172018 for the 2017-2018 season}
 }
 \value{
 The API output of player

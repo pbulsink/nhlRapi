@@ -7,7 +7,7 @@
 getPlayerStatTypes()
 }
 \value{
-a list of player stat types to call with \code[getPlayerStats]
+a list of player stat types to call with \code{\link{getPlayerStats}()}
 }
 \description{
 Only certain stat types are accepted for players. This returns the full valid list.

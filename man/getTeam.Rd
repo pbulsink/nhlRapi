@@ -16,8 +16,9 @@ getTeam(team = NULL, modifier = NULL, season = NULL)
 - 'team.schedule.previous' Same as above but for the last game played
 - 'team.stats' Returns the teams stats for the season
 - list('team.roster', 'season=20142015') Adding the season identifier shows the roster for that season
-- list('team.stats', 'stats=statsSingleSeasonPlayoffs') Specify which stats to get.
-@param season Optional, if looking for season specific information on team}
+- list('team.stats', 'stats=statsSingleSeasonPlayoffs') Specify which stats to get.}
+
+\item{season}{Optional, if looking for season specific information on team}
 }
 \value{
 The API output of teams

@@ -19,8 +19,8 @@ getPlayers <- function(player = NULL) {
 #' @description get specific stats for a provided player
 #'
 #' @param player The player ID to get stats
-#' @param stat The speific stats to get. Many options exist, see \code[getPlayerStatTypes()] for full list
-#'  @param season a season, if required or desired, for querying stats. Format: 20172018 for the 2017-2018 season
+#' @param stat The speific stats to get. Many options exist, see \code{\link{getPlayerStatTypes}()} for full list
+#' @param season a season, if required or desired, for querying stats. Format: 20172018 for the 2017-2018 season
 #'
 #' @return The API output of player
 #' @export
@@ -68,7 +68,7 @@ getPlayerStats <- function(player, stat = NULL, season = NULL) {
 #'
 #' @description Only certain stat types are accepted for players. This returns the full valid list.
 #'
-#' @return a list of player stat types to call with \code[getPlayerStats]
+#' @return a list of player stat types to call with \code{\link{getPlayerStats}()}
 #' @export
 getPlayerStatTypes<-function(){
   return(unname(unlist(getAPI('statTypes'))))

@@ -10,7 +10,7 @@
 #'  - 'team.stats' Returns the teams stats for the season
 #'  - list('team.roster', 'season=20142015') Adding the season identifier shows the roster for that season
 #'  - list('team.stats', 'stats=statsSingleSeasonPlayoffs') Specify which stats to get.
-#'  @param season Optional, if looking for season specific information on team
+#' @param season Optional, if looking for season specific information on team
 #'
 #' @return The API output of teams
 #' @export
@@ -40,4 +40,12 @@ getTeam <- function(team = NULL, modifier = NULL, season = NULL) {
     query <- 'teams'
   }
   return(getAPI(query = query, modifiers = modifier))
+}
+
+getTeamRoster <- function(team = NULL, season = NULL){
+  #TODO Roster frontend
+}
+
+getTeamStats <- function(team = NULL, stattype = NULL, season = NULL) {
+  #TODO Stats frontend
 }
