@@ -16,12 +16,12 @@ The following items are / will be covered by this API:
 - [x] Teams
 - [x] Divisions
 - [x] Conferences
-- [ ] People
+- [x] People
 - [ ] Game-IDs
 - [ ] Schedule
-- [ ] Standings
-- [ ] ~~Standings Types~~
-- [ ] ~~Stats Types~~
+- [x] Standings
+- [x] ~~Standings Types~~
+- [x] ~~Stats Types~~
 - [ ] Team Stats
 - [x] Draft
 - [x] Prospects
