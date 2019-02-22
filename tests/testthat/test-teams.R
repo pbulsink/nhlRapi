@@ -15,9 +15,19 @@ test_that("Team pulls team", {
 })
 
 test_that('getTeamRoster', {
-  expect_true(1+1==2)
+  q<-getTeamRoster(1)
+
+  expect_equal(names(q), c('copyright', 'teams'))
+  expect_equal(names(q$teams$roster$roster[[1]]),
+               c("person", "jerseyNumber", "position"))
+
+  q<-getTeamRoster(1, season=20102011)
+  expect_true('Martin Brodeur' %in% q$teams$roster$roster[[1]]$person$fullName)
 })
 
 test_that('getTeamStats', {
-  expect_true(1+1==2)
+  q <- getTeamStats(1, 20172018)
+
+  expect_equal(names(q), c('copyright', 'stats'))
+  expect_equal(q$stats$type$displayName, c('statsSingleSeason', 'regularSeasonStatRankings'))
 })

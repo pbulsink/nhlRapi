@@ -3,11 +3,9 @@
 #' @description Get the NHL teams, including historical teams. Or, get one single team
 #' @param team Optional, get specific team information.
 #' @param modifier Optional, if team is supplied, get specific info about a team. Options are:
-#'  - 'team.roster' Shows roster of active players for the specified team
-#'  - 'person.names' Same as above, but gives less info.
+#'  - 'person.names' Basic roster info.
 #'  - 'team.schedule.next' Returns details of the upcoming game for a team
 #'  - 'team.schedule.previous' Same as above but for the last game played
-#'  - 'team.stats' Returns the teams stats for the season
 #' @param season Optional, if looking for season specific information on team
 #'
 #' @return The API output of teams
@@ -17,10 +15,13 @@ getTeam <- function(team = NULL, modifier = NULL, season = NULL) {
     #checks to prevent bad API calls from progressing
     stopifnot(length(team) == 1)
     stopifnot(is.numeric(team))
-    if(!is.null(modifier)){
+    if(modifier == 'team.roster'){
+      return(getTeamRoster(team = team, season = season))
+    } else if (modifier == 'team.stats') {
+      return(getTeamStats(team = team, season = season))
+    } else if(!is.null(modifier)){
       stopifnot(length(modifier) == 1)
-      stopifnot(modifier %in% c('team.roster', 'person.names', 'team.schedule.next',
-                                'team.schedule.previous', 'team.stats'))
+      stopifnot(modifier %in% c('person.names', 'team.schedule.next', 'team.schedule.previous'))
       modifier<-paste0('expand=',modifier)
     }
     query <- querybuilder('teams', team)
@@ -35,12 +36,47 @@ getTeam <- function(team = NULL, modifier = NULL, season = NULL) {
   return(getAPI(query = query, modifiers = modifier))
 }
 
-#  - list('team.roster', 'season=20142015') Adding the season identifier shows the roster for that season
-#  - list('team.stats', 'stats=statsSingleSeasonPlayoffs') Specify which stats to get.
-getTeamRoster <- function(team = NULL, season = NULL){
-  #TODO Roster frontend
+
+#' Get Team Roster
+#'
+#' @description Returns the team roster, configurable for season. Convenience wrapper around \code{\link{getTeam}(team = team, modifier = team.roster, season = season)}.
+#'
+#' @param team The team roster to get. Required
+#' @param season Which season's roster to get. Optional, will get the current roster if not supplied.
+#'
+#' @return the API output of teams' rosters
+#' @export
+getTeamRoster <- function(team, season = NULL){
+  stopifnot(length(team) == 1)
+  modifier<-'expand=team.roster'
+  if(!is.null(season)){
+    stopifnot(length(season) == 1)
+    stopifnot(validSeason(season))
+    modifier <- c(modifier, paste0('season=',season))
+  }
+  query<-querybuilder('teams', team)
+  return(getAPI(query = query, modifiers = modifier))
 }
 
-getTeamStats <- function(team = NULL, stattype = NULL, season = NULL) {
-  #TODO Stats frontend
+
+#' Get Team Stats
+#'
+#' @description Returns the team stats, both single season numbers and league ranking. Convenience wrapper around \code{\link{getTeam}(team = team, modifier = team.stats, season = season)}.
+#'
+#' @param teamThe team stats to get. Required.
+#' @param season Which season's stats to get. Optional, will get the current years' stats if not supplied
+#'
+#' @return Team stats from the API
+#' @export
+getTeamStats <- function(team, season = NULL) {
+  stopifnot(length(team) == 1)
+  if(!is.null(season)){
+    stopifnot(length(season) == 1)
+    stopifnot(validSeason(season))
+    modifier <- paste0('season=',season)
+  } else {
+    modifier <- NULL
+  }
+  query<-querybuilder('teams', team, 'stats')
+  return(getAPI(query = query, modifiers = modifier))
 }

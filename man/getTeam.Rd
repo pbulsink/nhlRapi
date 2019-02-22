@@ -10,11 +10,9 @@ getTeam(team = NULL, modifier = NULL, season = NULL)
 \item{team}{Optional, get specific team information.}
 
 \item{modifier}{Optional, if team is supplied, get specific info about a team. Options are:
-- 'team.roster' Shows roster of active players for the specified team
-- 'person.names' Same as above, but gives less info.
+- 'person.names' Basic roster info.
 - 'team.schedule.next' Returns details of the upcoming game for a team
-- 'team.schedule.previous' Same as above but for the last game played
-- 'team.stats' Returns the teams stats for the season}
+- 'team.schedule.previous' Same as above but for the last game played}
 
 \item{season}{Optional, if looking for season specific information on team}
 }
