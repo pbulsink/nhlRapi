@@ -10,6 +10,7 @@ Description: This package provides an R interface to the free NHL API. The API i
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 3.1.0)
 Imports: 
     httr,
     jsonlite
