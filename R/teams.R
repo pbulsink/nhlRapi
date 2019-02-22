@@ -63,7 +63,7 @@ getTeamRoster <- function(team, season = NULL){
 #'
 #' @description Returns the team stats, both single season numbers and league ranking. Convenience wrapper around \code{\link{getTeam}(team = team, modifier = team.stats, season = season)}.
 #'
-#' @param teamThe team stats to get. Required.
+#' @param team The team stats to get. Required.
 #' @param season Which season's stats to get. Optional, will get the current years' stats if not supplied
 #'
 #' @return Team stats from the API

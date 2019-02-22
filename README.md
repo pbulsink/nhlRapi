@@ -32,7 +32,7 @@ The following items are / will be covered by this API:
 - [x] Standings
 - [x] ~~Standings Types~~
 - [x] ~~Stats Types~~
-- [ ] Team Stats
+- [x] Team Stats
 - [x] Draft
 - [x] Prospects
 - [x] Awards

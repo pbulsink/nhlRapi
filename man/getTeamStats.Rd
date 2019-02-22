@@ -7,9 +7,9 @@
 getTeamStats(team, season = NULL)
 }
 \arguments{
-\item{season}{Which season's stats to get. Optional, will get the current years' stats if not supplied}
+\item{team}{The team stats to get. Required.}
 
-\item{teamThe}{team stats to get. Required.}
+\item{season}{Which season's stats to get. Optional, will get the current years' stats if not supplied}
 }
 \value{
 Team stats from the API
