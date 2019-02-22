@@ -8,8 +8,6 @@
 #'  - 'team.schedule.next' Returns details of the upcoming game for a team
 #'  - 'team.schedule.previous' Same as above but for the last game played
 #'  - 'team.stats' Returns the teams stats for the season
-#'  - list('team.roster', 'season=20142015') Adding the season identifier shows the roster for that season
-#'  - list('team.stats', 'stats=statsSingleSeasonPlayoffs') Specify which stats to get.
 #' @param season Optional, if looking for season specific information on team
 #'
 #' @return The API output of teams
@@ -20,15 +18,10 @@ getTeam <- function(team = NULL, modifier = NULL, season = NULL) {
     stopifnot(length(team) == 1)
     stopifnot(is.numeric(team))
     if(!is.null(modifier)){
-      if(!is.list(modifier)){
-        stopifnot(modifier %in% c('team.roster', 'person.names', 'team.schedule.next',
-                                  'team.schedule.previous', 'team.stats'))
-        modifier<-paste0('expand=',modifier)
-      } else {
-        stopifnot((('team.roster' %in% modifier) | ('team.stats' %in% modifier)))
-        modifier[modifier == 'team.roster']<-'expand=team.roster'
-        modifier[modifier == 'team.stats']<-'expand=team.stats'
-      }
+      stopifnot(length(modifier) == 1)
+      stopifnot(modifier %in% c('team.roster', 'person.names', 'team.schedule.next',
+                                'team.schedule.previous', 'team.stats'))
+      modifier<-paste0('expand=',modifier)
     }
     query <- querybuilder('teams', team)
   } else {
@@ -42,6 +35,8 @@ getTeam <- function(team = NULL, modifier = NULL, season = NULL) {
   return(getAPI(query = query, modifiers = modifier))
 }
 
+#'  - list('team.roster', 'season=20142015') Adding the season identifier shows the roster for that season
+#'  - list('team.stats', 'stats=statsSingleSeasonPlayoffs') Specify which stats to get.
 getTeamRoster <- function(team = NULL, season = NULL){
   #TODO Roster frontend
 }
