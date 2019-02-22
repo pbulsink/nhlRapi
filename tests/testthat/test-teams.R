@@ -10,8 +10,14 @@ test_that("Team pulls team", {
   expect_error(getTeam(c(1,2)))
   expect_error(getTeam(team = 1, modifier = 'teamRoster'))
 
+  q<-getTeam(1, modifier = 'team.schedule.previous')
+  expect_true('previousGameSchedule' %in% names(q$teams))
+
   q<-getTeam(1, 'team.roster')
   expect_true('roster' %in% names(q$teams))
+
+  q<-getTeam(1, 'team.stats')
+  expect_equal(names(q), c('copyright', 'stats'))
 })
 
 test_that('getTeamRoster', {
