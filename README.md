@@ -6,6 +6,14 @@
 
 The NHL has a poorly documented API that has a lot of information available in it for absolutely free. There are statistics and records available, focusing on teams, players, games, drafts, prospects, and awards. This package aims to provide a basic API wrapper for use in R. Significant information required for the development of this package comes from [https://gitlab.com/dword4/nhlapi](https://gitlab.com/dword4/nhlapi).
 
+## Installation
+This package can be installed by running the following command in an R window:
+```
+devtools::install.github('pbulsink/nhlRapi')
+```
+
+The package may make it to CRAN one day. Please watch for that. 
+
 ## Usage
 Initially this API will be a dumb wrapper only, calling the API and returning the data as a json object as recieved. Future versions may initiate data cleaning or other manipulations. 
 

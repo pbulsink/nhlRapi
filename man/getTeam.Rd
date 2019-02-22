@@ -14,9 +14,7 @@ getTeam(team = NULL, modifier = NULL, season = NULL)
 - 'person.names' Same as above, but gives less info.
 - 'team.schedule.next' Returns details of the upcoming game for a team
 - 'team.schedule.previous' Same as above but for the last game played
-- 'team.stats' Returns the teams stats for the season
-- list('team.roster', 'season=20142015') Adding the season identifier shows the roster for that season
-- list('team.stats', 'stats=statsSingleSeasonPlayoffs') Specify which stats to get.}
+- 'team.stats' Returns the teams stats for the season}
 
 \item{season}{Optional, if looking for season specific information on team}
 }

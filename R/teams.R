@@ -35,8 +35,8 @@ getTeam <- function(team = NULL, modifier = NULL, season = NULL) {
   return(getAPI(query = query, modifiers = modifier))
 }
 
-#'  - list('team.roster', 'season=20142015') Adding the season identifier shows the roster for that season
-#'  - list('team.stats', 'stats=statsSingleSeasonPlayoffs') Specify which stats to get.
+#  - list('team.roster', 'season=20142015') Adding the season identifier shows the roster for that season
+#  - list('team.stats', 'stats=statsSingleSeasonPlayoffs') Specify which stats to get.
 getTeamRoster <- function(team = NULL, season = NULL){
   #TODO Roster frontend
 }
