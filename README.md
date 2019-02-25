@@ -42,7 +42,7 @@ The following items are / will be covered by this API:
 
 ### RECORDS
 
-- [ ] Attendance
+- [x] Attendance
 - [ ] Draft
 - [ ] Records
 - [ ] Franchise
