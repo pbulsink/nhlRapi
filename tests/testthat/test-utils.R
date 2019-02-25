@@ -13,8 +13,14 @@ test_that("Season Validator Works", {
 })
 
 test_that("Getting Current Season works", {
-  expect_equal(nchar(getCurrentSeason()), 8)
-  expect_type(getCurrentSeason(), 'double')
+  expect_equal(nchar(getSeasonAtDate()), 8)
+  expect_type(getSeasonAtDate(), 'double')
+  expect_equal(getSeasonAtDate("2018-11-01"), 20182019)
+  expect_equal(getSeasonAtDate("2019-02-01"), 20182019)
+
+  #Expect Failures
+  expect_error(getSeasonAtDate('now'))
+  expect_error(getSeasonAtDate(c('2018-01-31','2019-01-31')))
 })
 
 test_that('GameNumber Validation Works', {
