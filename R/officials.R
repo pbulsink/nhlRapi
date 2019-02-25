@@ -1,7 +1,13 @@
-#' Get Attendance Records
+#' Get Officials
 #'
-#' @return season attendance records from the API
+#' @param active Whether to limit to active officials only. Optional, default False
+#' @return Officials information
 #' @export
-getAttendance<-function(){
-  return(getRecordAPI(query='attendance'))
+getOfficials<-function(active = FALSE){
+  stopifnot(is.logical(active))
+  if(active){
+    return(getRecordAPI(query='officials', modifiers = 'cayenneExp=active=true'))
+  } else {
+    return(getRecordAPI(query='officials'))
+  }
 }
