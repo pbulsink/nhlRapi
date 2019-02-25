@@ -6,14 +6,15 @@
 #' @return The API output of divisions
 #' @export
 getDivision <- function(division = NULL) {
-  if(!is.null(division)) {
-    #checks to prevent bad API calls from progressing
+  if (!is.null(division)) {
+    # checks to prevent bad API calls from
+    # progressing
     stopifnot(length(division) == 1)
     stopifnot(is.numeric(division))
-
-    query <- querybuilder('divisions', division)
+    
+    query <- querybuilder("divisions", division)
   } else {
-    query <- 'divisions'
+    query <- "divisions"
   }
   return(getAPI(query = query))
 }

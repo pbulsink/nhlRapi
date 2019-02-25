@@ -7,15 +7,17 @@
 #' @return The API output of draft
 #' @export
 getDraft <- function(year = NULL) {
-  if(!is.null(year)) {
-    #checks to prevent bad API calls from progressing
+  if (!is.null(year)) {
+    # checks to prevent bad API calls from
+    # progressing
     stopifnot(length(year) == 1)
     stopifnot(is.numeric(year))
-    stopifnot(year >= 1963, year <= as.numeric(strftime(Sys.Date(), "%Y")))
-
-    query <- querybuilder('draft', year)
+    stopifnot(year >= 1963, year <= as.numeric(strftime(Sys.Date(), 
+      "%Y")))
+    
+    query <- querybuilder("draft", year)
   } else {
-    query <- 'draft'
+    query <- "draft"
   }
   return(getAPI(query = query))
 }
@@ -29,14 +31,16 @@ getDraft <- function(year = NULL) {
 #' @return The API output of prospects
 #' @export
 getProspect <- function(prospect = NULL) {
-  if(!is.null(prospect)) {
-    #checks to prevent bad API calls from progressing
+  if (!is.null(prospect)) {
+    # checks to prevent bad API calls from
+    # progressing
     stopifnot(length(prospect) == 1)
     stopifnot(is.numeric(prospect))
-
-    query <- querybuilder('draft', 'prospects', prospect)
+    
+    query <- querybuilder("draft", "prospects", 
+      prospect)
   } else {
-    query <- querybuilder('draft', 'prospects')
+    query <- querybuilder("draft", "prospects")
   }
   return(getAPI(query = query))
 }

@@ -6,14 +6,15 @@
 #' @return The API output of venues
 #' @export
 getVenue <- function(venue = NULL) {
-  if(!is.null(venue)) {
-    #checks to prevent bad API calls from progressing
+  if (!is.null(venue)) {
+    # checks to prevent bad API calls from
+    # progressing
     stopifnot(length(venue) == 1)
     stopifnot(is.numeric(venue))
-
-    query <- querybuilder('venues', venue)
+    
+    query <- querybuilder("venues", venue)
   } else {
-    query <- 'venues'
+    query <- "venues"
   }
   return(getAPI(query = query))
 }

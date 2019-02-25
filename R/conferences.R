@@ -6,14 +6,15 @@
 #' @return The API output of conferences
 #' @export
 getConference <- function(conference = NULL) {
-  if(!is.null(conference)) {
-    #checks to prevent bad API calls from progressing
+  if (!is.null(conference)) {
+    # checks to prevent bad API calls from
+    # progressing
     stopifnot(length(conference) == 1)
     stopifnot(is.numeric(conference))
-
-    query <- querybuilder('conferences', conference)
+    
+    query <- querybuilder("conferences", conference)
   } else {
-    query <- 'conferences'
+    query <- "conferences"
   }
   return(getAPI(query = query))
 }

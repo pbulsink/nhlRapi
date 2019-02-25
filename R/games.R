@@ -6,13 +6,14 @@
 #' @return The boxscore API output of games
 #' @export
 getGameBoxscore <- function(game) {
-  #checks to prevent bad API calls from progressing
+  # checks to prevent bad API calls from
+  # progressing
   stopifnot(length(game) == 1)
   stopifnot(is.numeric(game))
   stopifnot(validateGameCode(game))
-
-  query <- querybuilder('game', game, 'boxscore')
-
+  
+  query <- querybuilder("game", game, "boxscore")
+  
   return(getAPI(query = query))
 }
 
@@ -24,13 +25,14 @@ getGameBoxscore <- function(game) {
 #' @return The linescore output of the API
 #' @export
 getGameLinescore <- function(game) {
-  #checks to prevent bad API calls from progressing
+  # checks to prevent bad API calls from
+  # progressing
   stopifnot(length(game) == 1)
   stopifnot(is.numeric(game))
   stopifnot(validateGameCode(game))
-
-  query <- querybuilder('game', game, 'linescore')
-
+  
+  query <- querybuilder("game", game, "linescore")
+  
   return(getAPI(query = query))
 }
 
@@ -43,19 +45,21 @@ getGameLinescore <- function(game) {
 #' @return The feed API output of games
 #' @export
 getGameFeed <- function(game, from = NULL) {
-  #checks to prevent bad API calls from progressing
+  # checks to prevent bad API calls from
+  # progressing
   stopifnot(length(game) == 1)
   stopifnot(is.numeric(game))
   stopifnot(validateGameCode(game))
-
-  if(!is.null(from)) {
+  
+  if (!is.null(from)) {
     stopifnot(validateFromTimeCode(from))
-    modifiers <- paste0('startTimecode=', from)
+    modifiers <- paste0("startTimecode=", from)
   } else {
     modifiers <- NULL
   }
-
-  query <- querybuilder('game', game, 'feed', 'live')
-
+  
+  query <- querybuilder("game", game, "feed", 
+    "live")
+  
   return(getAPI(query = query, modifiers = modifiers))
 }

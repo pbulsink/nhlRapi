@@ -10,29 +10,32 @@
 #'
 #' @return The API output of teams
 #' @export
-getTeam <- function(team = NULL, modifier = NULL, season = NULL) {
-  if(!is.null(team)) {
-    #checks to prevent bad API calls from progressing
+getTeam <- function(team = NULL, modifier = NULL, 
+  season = NULL) {
+  if (!is.null(team)) {
+    # checks to prevent bad API calls from
+    # progressing
     stopifnot(length(team) == 1)
     stopifnot(is.numeric(team))
-    stopifnot(length(modifier)<2)
-    if(modifier == 'team.roster'){
+    stopifnot(length(modifier) < 2)
+    if (modifier == "team.roster") {
       return(getTeamRoster(team = team, season = season))
-    } else if (modifier == 'team.stats') {
+    } else if (modifier == "team.stats") {
       return(getTeamStats(team = team, season = season))
-    } else if(!is.null(modifier)){
+    } else if (!is.null(modifier)) {
       stopifnot(length(modifier) == 1)
-      stopifnot(modifier %in% c('person.names', 'team.schedule.next', 'team.schedule.previous'))
-      modifier<-paste0('expand=',modifier)
+      stopifnot(modifier %in% c("person.names", 
+        "team.schedule.next", "team.schedule.previous"))
+      modifier <- paste0("expand=", modifier)
     }
-    query <- querybuilder('teams', team)
+    query <- querybuilder("teams", team)
   } else {
-    #No modifiers or season for all teams call.
-
+    # No modifiers or season for all teams call.
+    
     stopifnot(is.null(modifier))
     stopifnot(is.null(season))
-
-    query <- 'teams'
+    
+    query <- "teams"
   }
   return(getAPI(query = query, modifiers = modifier))
 }
@@ -47,16 +50,17 @@ getTeam <- function(team = NULL, modifier = NULL, season = NULL) {
 #'
 #' @return the API output of teams' rosters
 #' @export
-getTeamRoster <- function(team, season = NULL){
+getTeamRoster <- function(team, season = NULL) {
   stopifnot(length(team) == 1)
-  modifier<-'expand=team.roster'
-  if(!is.null(season)){
+  modifier <- "expand=team.roster"
+  if (!is.null(season)) {
     stopifnot(length(season) == 1)
     stopifnot(is.numeric(season))
     stopifnot(validSeason(season))
-    modifier <- c(modifier, paste0('season=',season))
+    modifier <- c(modifier, paste0("season=", 
+      season))
   }
-  query<-querybuilder('teams', team)
+  query <- querybuilder("teams", team)
   return(getAPI(query = query, modifiers = modifier))
 }
 
@@ -72,14 +76,14 @@ getTeamRoster <- function(team, season = NULL){
 #' @export
 getTeamStats <- function(team, season = NULL) {
   stopifnot(length(team) == 1)
-  if(!is.null(season)){
+  if (!is.null(season)) {
     stopifnot(length(season) == 1)
     stopifnot(is.numeric(season))
     stopifnot(validSeason(season))
-    modifier <- paste0('season=',season)
+    modifier <- paste0("season=", season)
   } else {
     modifier <- NULL
   }
-  query<-querybuilder('teams', team, 'stats')
+  query <- querybuilder("teams", team, "stats")
   return(getAPI(query = query, modifiers = modifier))
 }

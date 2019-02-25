@@ -6,14 +6,15 @@
 #' @return The API output of awards
 #' @export
 getAward <- function(award = NULL) {
-  if(!is.null(award)) {
-    #checks to prevent bad API calls from progressing
+  if (!is.null(award)) {
+    # checks to prevent bad API calls from
+    # progressing
     stopifnot(length(award) == 1)
     stopifnot(is.numeric(award))
-
-    query <- querybuilder('awards', award)
+    
+    query <- querybuilder("awards", award)
   } else {
-    query <- 'awards'
+    query <- "awards"
   }
   return(getAPI(query = query))
 }
