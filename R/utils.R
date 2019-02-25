@@ -31,3 +31,28 @@ getCurrentSeason<-function(){
   }
   return(as.numeric(paste0(year, year+1)))
 }
+
+validateGameCode<-function(game_code){
+  #YYYYNNGGGG
+  #YYYY = Year (2018 for 20182019 season)
+  #NN = Game Type 01=preseason, 02=regular season, 03=postseason, 04=allstar
+  #GGGG = Game number. 0001 to 1271 for regular season, 0[round1-4][series1-8,1-4,1-2,1][game1-7] for playoffs
+
+  yearregex<-'[1-2][0,9][0-9][0-9]'
+  typeregex<-'0[1-4]'
+  #playoffregex<-'0[1-4][1-8][1-7]'
+  gameregex<-'[0-1][0-9][0-9][0-9]'
+
+  totalregex<-paste0(yearregex, typeregex, gameregex)
+  return(grepl(pattern = totalregex, x = game_code))
+}
+
+validateFromTimeCode<-function(time_code){
+  #yyyymmdd_hhmmss
+
+  dateregex<-'[1-2][0,9][0-9][0-9][0,1][0-9][0-3][0-9]'
+  timeregex<-'[0-2][0-9][0-5][0-9][0-5][0-9]'
+
+  totalregex<-paste0(dateregex, '_', timeregex)
+  return(grepl(pattern = totalregex, x = time_code))
+}
