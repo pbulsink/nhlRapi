@@ -1,11 +1,12 @@
 Package: nhlRapi
 Title: R Interface to the NHL API
-Version: 0.0.0.0001
+Version: 0.1
 Authors@R: 
     person(given = "Philip",
            family = "Bulsink",
            role = c("aut", "cre"),
-           email = "bulsinkp@gmail.com")
+           email = "bulsinkp@gmail.com",
+           comment = c(ORCID = "0000-0001-9668-2429"))
 Description: This package provides an R interface to the free NHL API. The API is poorly documented and not publicised by the NHL; the API may disappear at any time without warning. 
 License: MIT + file LICENSE
 Encoding: UTF-8
