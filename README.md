@@ -27,7 +27,7 @@ The following items are / will be covered by this API:
 - [x] Divisions
 - [x] Conferences
 - [x] People
-- [ ] Game-IDs
+- [x] Game-IDs
 - [x] Schedule
 - [x] Standings
 - [x] ~~Standings Types~~

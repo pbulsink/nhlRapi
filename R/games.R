@@ -1,0 +1,61 @@
+#' Get Game Boxscore
+#'
+#' @description Get a NHL game boxscore. Includes goals, shots, PIMs, blocked, takeaways, giveaways and hits
+#' @param game Required, get specific game boxscore.
+#'
+#' @return The boxscore API output of games
+#' @export
+getGameBoxscore <- function(game) {
+  #checks to prevent bad API calls from progressing
+  stopifnot(length(game) == 1)
+  stopifnot(is.numeric(game))
+  stopifnot(validateGameCode(game))
+
+  query <- querybuilder('game', game, 'boxscore')
+
+  return(getAPI(query = query))
+}
+
+#' Get Game Linescore
+#'
+#' @description Get a NHL game linescore. Includes goals, shots on goal, powerplay and goalie pulled status, number of skaters and shootout information if applicable
+#' @param game Required, get specific game boxscore.
+#'
+#' @return The linescore output of the API
+#' @export
+getGameLinescore <- function(game) {
+  #checks to prevent bad API calls from progressing
+  stopifnot(length(game) == 1)
+  stopifnot(is.numeric(game))
+  stopifnot(validateGameCode(game))
+
+  query <- querybuilder('game', game, 'linescore')
+
+  return(getAPI(query = query))
+}
+
+#' Get Game Feed
+#'
+#' @description Get a NHL game feed. Includes play by play data with event locations, and after-game info like 3 stars.
+#' @param game Required, get specific game feed
+#' @param from Time from which to update, format yyyymmdd_hhmmss
+#'
+#' @return The feed API output of games
+#' @export
+getGameFeed <- function(game, from = NULL) {
+  #checks to prevent bad API calls from progressing
+  stopifnot(length(game) == 1)
+  stopifnot(is.numeric(game))
+  stopifnot(validateGameCode(game))
+
+  if(!is.null(from)) {
+    stopifnot(validateFromTimeCode(from))
+    modifiers <- paste0('startTimecode=', from)
+  } else {
+    modifiers <- NULL
+  }
+
+  query <- querybuilder('game', game, 'feed', 'live')
+
+  return(getAPI(query = query, modifiers = modifiers))
+}
