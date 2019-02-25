@@ -48,9 +48,9 @@ The following items are / will be covered by this API:
 - [ ] Franchise
 - [ ] Player
 - [ ] Playoffs
-- [ ] Trophy
-- [ ] Milestones
-- [ ] Officials
+- [x] Trophy
+- [x] Milestones
+- [x] Officials
 
 ## Copyright
 All data, teams, logos, and information is copyright NHL and its teams, with compliance to the copyright statement recieved from each API call or from `getCopyright()`.
