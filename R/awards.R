@@ -18,3 +18,11 @@ getAward <- function(award = NULL) {
   }
   return(getStatAPI(query = query))
 }
+
+#' Get Trophys
+#'
+#' @return trophy information from records api
+#' @export
+getTrophy<-function(){
+  return(getRecordAPI(query='trophy'))
+}
