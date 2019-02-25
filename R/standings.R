@@ -27,10 +27,12 @@ getStandings <- function(standingsType = NULL, date = NULL, season = NULL, expan
     modifier<-c(modifier, 'expand=standings.record')
   }
   if(!is.null(date)){
+    stopifnot(length(date) == 1)
     date<-as.Date(date)
     modifier<-c(modifier, paste0('date=', strftime(date, format='%Y-%m-%d')))
   }
   if(!is.null(season)){
+    stopifnot(length(season) == 1)
     stopifnot(validSeason(season))
     modifier<-c(modifier, paste0('season=', season))
   }

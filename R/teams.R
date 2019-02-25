@@ -15,6 +15,7 @@ getTeam <- function(team = NULL, modifier = NULL, season = NULL) {
     #checks to prevent bad API calls from progressing
     stopifnot(length(team) == 1)
     stopifnot(is.numeric(team))
+    stopifnot(length(modifier)<2)
     if(modifier == 'team.roster'){
       return(getTeamRoster(team = team, season = season))
     } else if (modifier == 'team.stats') {
@@ -51,6 +52,7 @@ getTeamRoster <- function(team, season = NULL){
   modifier<-'expand=team.roster'
   if(!is.null(season)){
     stopifnot(length(season) == 1)
+    stopifnot(is.numeric(season))
     stopifnot(validSeason(season))
     modifier <- c(modifier, paste0('season=',season))
   }
@@ -72,6 +74,7 @@ getTeamStats <- function(team, season = NULL) {
   stopifnot(length(team) == 1)
   if(!is.null(season)){
     stopifnot(length(season) == 1)
+    stopifnot(is.numeric(season))
     stopifnot(validSeason(season))
     modifier <- paste0('season=',season)
   } else {

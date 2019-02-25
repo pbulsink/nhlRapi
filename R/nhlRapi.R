@@ -27,10 +27,8 @@ getAPI <- function(query, modifiers = NULL){
   #Stop if not 200 ((OK)) returned
   httr::stop_for_status(response)
 
-  if (httr::http_type(response) != "application/json") {
-    #Stops if not json returned.
-    stop("API did not return json", call. = FALSE)
-  }
+  #Stops if not json returned.
+  stopifnot(httr::http_type(response) == "application/json")
 
   response_content<-rawToChar(httr::content(response, 'raw'))
 

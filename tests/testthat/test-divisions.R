@@ -10,4 +10,7 @@ test_that("Divisions scrape", {
   expect_equal(names(q), c('copyright', 'divisions'))
   expect_match(q$divisions$name, "Central")
 
+  #Expect Failures
+  expect_error(getDivision(c(1,2)))
+  expect_error(getDivision('Central'))
 })

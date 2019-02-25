@@ -10,4 +10,8 @@ test_that("Conferences scrape", {
   expect_equal(names(q), c('copyright', 'conferences'))
   expect_match(q$conferences$name, "Western")
 
+  #Expect Failures
+  expect_error(getConference(c(1,2)))
+  expect_error(getConference('Western'))
+
 })

@@ -28,8 +28,9 @@ getSchedule <- function(team = NULL, startDate = NULL, endDate = NULL, scheduleT
   if(!is.null(endDate)){
     stopifnot(!is.null(startDate))
     startDate<-as.Date(startDate)
-    modifier <- c(modifier, paste0('startDate=', strftime(startDate, '%Y-%m-%d')))
     endDate<-as.Date(endDate)
+    stopifnot(endDate > startDate)
+    modifier <- c(modifier, paste0('startDate=', strftime(startDate, '%Y-%m-%d')))
     modifier <- c(modifier, paste0('endDate=', strftime(endDate, '%Y-%m-%d')))
   } else if (!is.null(startDate)){
     startDate<-as.Date(startDate)

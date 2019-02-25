@@ -18,7 +18,14 @@ test_that("Standings scape works", {
   q<-getStandings(standingsType = 'wildCard', expand = TRUE)
   expect_true('records' %in% names(q$records$teamRecords[[1]]))
 
-
+  #Expected Failures
+  expect_error(getStandings(standingsType = c('wildCard', 'regularSeason')))
+  expect_error(getStandings(standingsType = 'bad'))
+  expect_error(getStandings(season = 'bad'))
+  expect_error(getStandings(season = 1))
+  expect_error(getStandings(season = c(20172018, 20182019)))
+  expect_error(getStandings(date = 'bad'))
+  expect_error(getStandings(date = c('2018-02-01', '2018-02-02')))
 })
 
 test_that("Standings Types scrape", {

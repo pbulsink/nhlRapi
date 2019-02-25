@@ -20,7 +20,7 @@ test_that("Player Scrapes", {
   q<-getPlayerStats(8475791, stat = 'statsSingleSeason', season = 20172018)
   expect_equal(q$stats$splits[[1]]$season, '20172018')
 
-  #Failures
+  #Expected Failures
   expect_error(getPlayers(c(1,5)))
   expect_error(getPlayers('Taylor Hall'))
 
@@ -28,8 +28,6 @@ test_that("Player Scrapes", {
   expect_error(getPlayerStats('Taylor Hall'))
   expect_error(getPlayerStats(8475791, stat = 'bad.stats'))
   expect_error(getPlayerStats(8475791, stat = 'yearByYear', season = 1))
-
-
 })
 
 test_that("PlayerStatTypes come", {
