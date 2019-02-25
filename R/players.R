@@ -50,17 +50,11 @@ getPlayerStats <- function(player, stat = NULL, season = NULL) {
 
   query <- querybuilder('people', player, 'stats')
 
-  modifier <- NULL
-  if(!is.null(stat)){
-    modifier<-paste0('stats=', stat)
-  }
+  modifier<-paste0('stats=', stat)
   if(!is.null(season)) {
-    if(is.null(modifier)){
-      modifier<-paste0('season=', season)
-    } else {
-      modifier<-c(modifier, paste0('season=', season))
-    }
+    modifier<-c(modifier, paste0('season=', season))
   }
+
   return(getAPI(query = query, modifiers = modifier))
 }
 
