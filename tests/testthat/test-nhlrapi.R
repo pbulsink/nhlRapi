@@ -1,7 +1,7 @@
 context("test-nhlrapi")
 
 test_that("query queries", {
-  q <- getAPI(query = "teams")
+  q <- getStatAPI(query = "teams")
   expect_type(q, "list")
   expect_type(q$copyright, "character")
   expect_equal(Encoding(q$copyright), "UTF-8")

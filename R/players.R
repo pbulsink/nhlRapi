@@ -8,10 +8,10 @@
 getPlayers <- function(player = NULL) {
   stopifnot(length(player) == 1)
   stopifnot(is.numeric(player))
-  
+
   query <- querybuilder("people", player)
-  
-  return(getAPI(query = query))
+
+  return(getStatAPI(query = query))
 }
 
 #' Get Player's Stats
@@ -24,7 +24,7 @@ getPlayers <- function(player = NULL) {
 #'
 #' @return The API output of player
 #' @export
-getPlayerStats <- function(player, stat = NULL, 
+getPlayerStats <- function(player, stat = NULL,
   season = NULL) {
   stopifnot(length(player) == 1)
   stopifnot(is.numeric(player))
@@ -33,33 +33,33 @@ getPlayerStats <- function(player, stat = NULL,
     # wanted, use getPlayers only.
     return(getPlayers(player = player))
   }
-  
-  stopifnot(stat %in% c("yearByYear", "yearByYearRank", 
-    "yearByYearPlayoffs", "yearByYearPlayoffsRank", 
-    "careerRegularSeason", "careerPlayoffs", 
-    "gameLog", "playoffGameLog", "vsTeam", 
-    "vsTeamPlayoffs", "vsDivision", "vsDivisionPlayoffs", 
-    "vsConference", "vsConferencePlayoffs", 
-    "byMonth", "byMonthPlayoffs", "byDayOfWeek", 
-    "byDayOfWeekPlayoffs", "homeAndAway", "homeAndAwayPlayoffs", 
-    "winLoss", "winLossPlayoffs", "onPaceRegularSeason", 
-    "regularSeasonStatRankings", "playoffStatRankings", 
-    "goalsByGameSituation", "goalsByGameSituationPlayoffs", 
+
+  stopifnot(stat %in% c("yearByYear", "yearByYearRank",
+    "yearByYearPlayoffs", "yearByYearPlayoffsRank",
+    "careerRegularSeason", "careerPlayoffs",
+    "gameLog", "playoffGameLog", "vsTeam",
+    "vsTeamPlayoffs", "vsDivision", "vsDivisionPlayoffs",
+    "vsConference", "vsConferencePlayoffs",
+    "byMonth", "byMonthPlayoffs", "byDayOfWeek",
+    "byDayOfWeekPlayoffs", "homeAndAway", "homeAndAwayPlayoffs",
+    "winLoss", "winLossPlayoffs", "onPaceRegularSeason",
+    "regularSeasonStatRankings", "playoffStatRankings",
+    "goalsByGameSituation", "goalsByGameSituationPlayoffs",
     "statsSingleSeason", "statsSingleSeasonPlayoffs"))
-  
+
   if (!is.null(season)) {
     stopifnot(validSeason(season))
   }
-  
+
   query <- querybuilder("people", player, "stats")
-  
+
   modifier <- paste0("stats=", stat)
   if (!is.null(season)) {
-    modifier <- c(modifier, paste0("season=", 
+    modifier <- c(modifier, paste0("season=",
       season))
   }
-  
-  return(getAPI(query = query, modifiers = modifier))
+
+  return(getStatAPI(query = query, modifiers = modifier))
 }
 
 #' Get Player Stat Types
@@ -69,5 +69,5 @@ getPlayerStats <- function(player, stat = NULL,
 #' @return a list of player stat types to call with \code{\link{getPlayerStats}()}
 #' @export
 getPlayerStatTypes <- function() {
-  return(unname(unlist(getAPI("statTypes"))))
+  return(unname(unlist(getStatAPI("statTypes"))))
 }

@@ -11,10 +11,10 @@ getVenue <- function(venue = NULL) {
     # progressing
     stopifnot(length(venue) == 1)
     stopifnot(is.numeric(venue))
-    
+
     query <- querybuilder("venues", venue)
   } else {
     query <- "venues"
   }
-  return(getAPI(query = query))
+  return(getStatAPI(query = query))
 }

@@ -11,10 +11,10 @@ getConference <- function(conference = NULL) {
     # progressing
     stopifnot(length(conference) == 1)
     stopifnot(is.numeric(conference))
-    
+
     query <- querybuilder("conferences", conference)
   } else {
     query <- "conferences"
   }
-  return(getAPI(query = query))
+  return(getStatAPI(query = query))
 }

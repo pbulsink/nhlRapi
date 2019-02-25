@@ -8,23 +8,23 @@
 #'
 #' @return The API output of standings
 #' @export
-getStandings <- function(standingsType = NULL, 
+getStandings <- function(standingsType = NULL,
   date = NULL, season = NULL, expand = FALSE) {
   if (!is.null(standingsType)) {
     # checks to prevent bad API calls from
     # progressing
     stopifnot(length(standingsType) == 1)
-    
-    stopifnot(standingsType %in% c("regularSeason", 
-      "wildCard", "divisionLeaders", "wildCardWithLeaders", 
-      "preseason", "postseason", "byDivision", 
+
+    stopifnot(standingsType %in% c("regularSeason",
+      "wildCard", "divisionLeaders", "wildCardWithLeaders",
+      "preseason", "postseason", "byDivision",
       "byConference", "byLeague"))
-    
+
     query <- querybuilder("standings", standingsType)
   } else {
     query <- "standings"
   }
-  
+
   modifier <- NULL
   if (expand) {
     modifier <- c(modifier, "expand=standings.record")
@@ -32,21 +32,21 @@ getStandings <- function(standingsType = NULL,
   if (!is.null(date)) {
     stopifnot(length(date) == 1)
     date <- as.Date(date)
-    modifier <- c(modifier, paste0("date=", 
+    modifier <- c(modifier, paste0("date=",
       strftime(date, format = "%Y-%m-%d")))
   }
   if (!is.null(season)) {
     stopifnot(length(season) == 1)
     stopifnot(validSeason(season))
-    modifier <- c(modifier, paste0("season=", 
+    modifier <- c(modifier, paste0("season=",
       season))
   }
-  
+
   if (!is.null(modifier)) {
     modifier <- modifier[!is.null(modifier)]
   }
-  
-  return(getAPI(query = query, modifiers = modifier))
+
+  return(getStatAPI(query = query, modifiers = modifier))
 }
 
 #' Get Standings Types
@@ -56,5 +56,5 @@ getStandings <- function(standingsType = NULL,
 #' @return a list of standings types to call with \code{\link{getStandings}()}
 #' @export
 getStandingsTypes <- function() {
-  return(unname(unlist(getAPI("standingsTypes"))))
+  return(unname(unlist(getStatAPI("standingsTypes"))))
 }

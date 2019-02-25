@@ -11,10 +11,10 @@ getDivision <- function(division = NULL) {
     # progressing
     stopifnot(length(division) == 1)
     stopifnot(is.numeric(division))
-    
+
     query <- querybuilder("divisions", division)
   } else {
     query <- "divisions"
   }
-  return(getAPI(query = query))
+  return(getStatAPI(query = query))
 }
