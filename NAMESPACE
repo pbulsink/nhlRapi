@@ -3,6 +3,7 @@
 export(getAPI)
 export(getAward)
 export(getConference)
+export(getCopyright)
 export(getDivision)
 export(getDraft)
 export(getPlayerStatTypes)

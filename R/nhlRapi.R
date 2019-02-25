@@ -10,6 +10,8 @@
 #' @keywords internal
 getAPI <- function(query, modifiers = NULL){
 
+  ua <- httr::user_agent("http://github.com/pbulsink/nhlRapi")
+
   base_uri<-"https://statsapi.web.nhl.com/api/v1/"
 
   query_wrapper<-query
@@ -20,9 +22,15 @@ getAPI <- function(query, modifiers = NULL){
 
   call_url <- paste0(base_uri, query_wrapper)
 
-  response<-httr::GET(call_url)
+  response<-httr::GET(call_url, ua)
 
+  #Stop if not 200 ((OK)) returned
   httr::stop_for_status(response)
+
+  if (httr::http_type(response) != "application/json") {
+    #Stops if not json returned.
+    stop("API did not return json", call. = FALSE)
+  }
 
   response_content<-rawToChar(httr::content(response, 'raw'))
 
@@ -31,5 +39,14 @@ getAPI <- function(query, modifiers = NULL){
   return(json_response)
 }
 
-
+#' Get Copyright Statement
+#'
+#' @description return the copyright statement from the API calls
+#'
+#' @return The copyright statement from the API calls
+#' @export
+getCopyright<-function(){
+  response<-getAward()$copyright
+  return(response)
+}
 

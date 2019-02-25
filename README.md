@@ -36,9 +36,9 @@ The following items are / will be covered by this API:
 - [x] Draft
 - [x] Prospects
 - [x] Awards
-- [ ] Venues (new)
+- [x] Venues (new)
 
-*Stats Types and Standings Types are modifiers for People and Standings and Team Stats and won't be public facing*
+*Stats Types and Standings Types are modifiers for People and Standings and Team Stats*
 
 ### RECORDS
 
@@ -53,5 +53,5 @@ The following items are / will be covered by this API:
 - [ ] Officials
 
 ## Copyright
-All data, teams, logos, and information is copyright NHL and its teams, with compliance to the copyright statement recieved from each API call. 
+All data, teams, logos, and information is copyright NHL and its teams, with compliance to the copyright statement recieved from each API call or from `getCopyright()`.
 
