@@ -1,0 +1,31 @@
+context("test-franchises")
+
+test_that("franchise scrapings work", {
+  q<-getFranchiseList()
+
+  expect_type(q, 'list')
+  expect_equal(names(q$data), c("id", "firstSeasonId", "lastSeasonId", "mostRecentTeamId", "teamCommonName", "teamPlaceName"))
+
+  q<-getFranchiseTeamTotal()
+  expect_type(q, 'list')
+  expect_true('shutouts' %in% names(q$data))
+
+  q<-getFranchiseTeamTotal(38)
+  expect_type(q, 'list')
+  expect_equal(q$data$teamName, c('Vegas Golden Knights', 'Vegas Golden Knights'))
+
+  q<-getFranchiseSeasonRecords(38)
+  expect_type(q, 'list')
+  q<-getFranchiseSeasonResults(38)
+  expect_type(q, 'list')
+  q<-getFranchiseDetail(54)
+  expect_type(q, 'list')
+  q<-getFranchiseGoalieRecords(38)
+  expect_type(q, 'list')
+  q<-getFranchiseSkaterRecords(38)
+  expect_type(q, 'list')
+  q<-getAllTimeRecordVsFranchise(38)
+  expect_type(q, 'list')
+  q<-getPlayoffRecordVsFranchise(38)
+  expect_type(q, 'list')
+})

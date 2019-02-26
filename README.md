@@ -44,8 +44,8 @@ The following items are / will be covered by this API:
 
 - [x] Attendance
 - [ ] Draft
-- [ ] Records
-- [ ] Franchise
+- [x] Records
+- [x] Franchise
 - [ ] Player
 - [ ] Playoffs
 - [x] Trophy
