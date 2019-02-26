@@ -7,7 +7,7 @@
 getMilestone(milestone)
 }
 \arguments{
-\item{milestone}{one of:
+\item{milestone}{Required, one of:
 - 1000-point-career
 - 500-goal-career
 - 100-point-season
