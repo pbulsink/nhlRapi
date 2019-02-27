@@ -33,5 +33,5 @@ getPlayoffDetails<-function(season = NULL, series = NULL){
     modifiers<-modifiers[!is.null(modifiers)]
   }
 
-  return(getRecordAPI(query = 'playoff-series', modifier = modifiers))
+  return(getRecordAPI(query = 'playoff-series', modifiers = modifiers))
 }

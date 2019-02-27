@@ -50,7 +50,7 @@ getRecordAPI <- function(query, modifiers = NULL) {
 #' Ultimate BASE api call.
 #'
 #' @param call_url the generated url to get
-#' @param query specific query to api endpoint
+#' @param query_wrapper specific query to api endpoint
 #' @param type stat or record, for S3 generation
 #'
 #' @return json response
