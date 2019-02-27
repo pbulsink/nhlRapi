@@ -38,7 +38,7 @@ The following items are / will be covered by this API:
 - [x] Awards
 - [x] Venues (new)
 
-*Stats Types and Standings Types are modifiers for People and Standings and Team Stats*
+*Stats Types and Standings Types are modifiers for Standings and People/Team Stats*
 
 ### RECORDS
 
