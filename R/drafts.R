@@ -44,3 +44,7 @@ getProspect <- function(prospect = NULL) {
   }
   return(getStatAPI(query = query))
 }
+
+getDraftRecords<-function(){
+  return(getRecordAPI('draft'))
+}

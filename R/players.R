@@ -71,3 +71,11 @@ getPlayerStats <- function(player, stat = NULL,
 getPlayerStatTypes <- function() {
   return(unname(unlist(getStatAPI("statTypes"))))
 }
+
+# getPlayerRecord<- function(playerID) {
+#   return(NA)
+# }
+#
+# searchPlayerName <- function(name, nametype){
+#   return(NA)
+# }

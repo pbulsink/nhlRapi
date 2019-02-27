@@ -43,11 +43,11 @@ The following items are / will be covered by this API:
 ### RECORDS
 
 - [x] Attendance
-- [ ] Draft
+- [x] Draft
 - [x] Records
 - [x] Franchise
-- [ ] Player
-- [ ] Playoffs
+- [x] Player
+- [x] Playoffs
 - [x] Trophy
 - [x] Milestones
 - [x] Officials

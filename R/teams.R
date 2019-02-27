@@ -87,3 +87,15 @@ getTeamStats <- function(team, season = NULL) {
   query <- querybuilder("teams", team, "stats")
   return(getStatAPI(query = query, modifiers = modifier))
 }
+
+#' Get Players per team
+#'
+#' @param team Team id
+#'
+#' @return the players (from records api) on the team
+#' @export
+getPlayersByTeam<-function(team) {
+  stopifnot(is.numeric(team))
+  query<-querybuilder('player', 'byTeam', team)
+  return(getRecordAPI(query = query))
+}
