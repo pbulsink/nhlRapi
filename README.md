@@ -4,10 +4,10 @@
 
 ## Introduction
 
-The NHL has a poorly documented API that has a lot of information available in it for absolutely free. There are statistics and records available, focusing on teams, players, games, drafts, prospects, and awards. This package aims to provide a basic API wrapper for use in R. Significant information required for the development of this package comes from [https://gitlab.com/dword4/nhlapi](https://gitlab.com/dword4/nhlapi).
+The NHL has a poorly documented API that has a lot of information available in it for absolutely free. There are statistics and records available, focusing on teams, players, games, drafts, prospects, and awards. This package aims to provide a basic API wrapper for use in `R`. Significant information required for the development of this package comes from [https://gitlab.com/dword4/nhlapi](https://gitlab.com/dword4/nhlapi).
 
 ## Installation
-This package can be installed by running the following command in an R window:
+This package can be installed by running the following command in an `R` session:
 ```
 devtools::install.github('pbulsink/nhlRapi')
 ```
@@ -19,7 +19,7 @@ Initially this API will be a dumb wrapper only, calling the API and returning th
 
 ## API Coverage
 
-The following items are / will be covered by this API:
+The following items are covered by this API:
 
 ### STATS
 
@@ -38,11 +38,11 @@ The following items are / will be covered by this API:
 - [x] Awards
 - [x] Venues (new)
 
-*Stats Types and Standings Types are modifiers for Standings and People/Team Stats*
+*Stats Types and Standings Types are modifiers for People Stats and Standings, respectively*
 
 ### RECORDS
 
-- [x] Attendance
+- [X] Attendance
 - [x] Draft
 - [x] Records
 - [x] Franchise
@@ -51,6 +51,15 @@ The following items are / will be covered by this API:
 - [x] Trophy
 - [x] Milestones
 - [x] Officials
+
+### Filtering
+Some functions contain introductory filter options. Further filtering can be done once data is retrieved by the API. For example, the API can get all attendance records `getAttendance()` or a specific season `getAttendance(season = 20152016)`. While the web API allows for other field filtering (e.g. a call for `playoffAttendance>1000000`), the `R` api functions do not have all of these built in. 
+
+Instead, use `R` to perform these filters for now:
+```r
+attendance<-getAttendance()
+attendance<-attendance$data[attendance$data$playoffAttendance > 1000000, ]
+```
 
 ## Copyright
 All data, teams, logos, and information is copyright NHL and its teams, with compliance to the copyright statement recieved from each API call or from `getCopyright()`.

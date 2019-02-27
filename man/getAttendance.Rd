@@ -4,11 +4,18 @@
 \alias{getAttendance}
 \title{Get Attendance Records}
 \usage{
-getAttendance()
+getAttendance(season = NULL)
+}
+\arguments{
+\item{season}{Optional, to pull attendance from given season. Format: 20172018}
 }
 \value{
 season attendance records from the API
 }
 \description{
 Get Attendance Records
+}
+\examples{
+getAttendance()
+getAttendance(20152016)
 }
