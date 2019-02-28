@@ -12,7 +12,9 @@ This package can be installed by running the following command in an `R` session
 devtools::install.github('pbulsink/nhlRapi')
 ```
 
-The package may make it to CRAN one day. Please watch for that. 
+The package is still under development and may undergo rapid changes, including breaking changes, without warning. Please test any code using this package regularly. 
+
+The package may make it to CRAN one day, once stability is achieved. Please watch for that. 
 
 ## Usage
 Initially this API will be a dumb wrapper only, calling the API and returning the data as a json object as recieved. Future versions may initiate data cleaning or other manipulations. 
