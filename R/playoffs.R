@@ -5,9 +5,16 @@
 #'
 #' @return a list of all playoffs result matching provided season and series
 #' @export
+#' @examples
+#' #Get all playoff series in 20172018
+#' playoffs_1718<-getPlayoffDetails(season = 20172018)
+#'
+#' #Get all Stanley Cup Finals series:
+#' playoffs_finals<-getPlayoffDetails(series = 'Stanley Cup Final')
+#'
+#' #alternativly, with a series code:
+#' playoffs_finals<-getPlayoffDetails(series = 4)
 getPlayoffDetails<-function(season = NULL, series = NULL){
-  #/playoff-series?cayenneExp=seriesTitle="Stanley Cup Final" and seasonId=20172018
-
   modifiers<-NULL
 
   if(!is.null(series)){

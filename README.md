@@ -47,7 +47,7 @@ The following items are covered by this API:
 - [X] Records
 - [x] Franchise
 - [x] Player
-- [x] Playoffs
+- [X] Playoffs
 - [x] Trophy
 - [x] Milestones
 - [x] Officials
