@@ -12,3 +12,6 @@ a list of all records maintained by the NHL. The return is the API URL to call f
 \description{
 Get Records List
 }
+\examples{
+records<-getRecordsList()
+}
