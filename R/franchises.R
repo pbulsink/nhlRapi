@@ -47,7 +47,7 @@ getFranchiseSeasonResults<-function(franchiseID = NULL){
 getFranchiseDetail<-function(teamID = NULL){
   if(!is.null(teamID)){
     stopifnot(is.numeric(teamID))
-    modifier<-paste0('cayenneExp=mostRecentTeamId=', teamID)
+    modifier<-paste0('mostRecentTeamId=', teamID)
   } else {
     modifier<-NULL
   }
@@ -83,7 +83,7 @@ getFranchiseSkaterRecords<-function(franchiseID = NULL){
 getAllTimeRecordVsFranchise<-function(franchiseID = NULL){
   if(!is.null(franchiseID)){
     stopifnot(is.numeric(franchiseID))
-    modifier<-paste0('cayenneExp=teamFranchiseId=', franchiseID)
+    modifier<-paste0('teamFranchiseId=', franchiseID)
   } else {
     modifier<-NULL
   }
@@ -99,7 +99,7 @@ getAllTimeRecordVsFranchise<-function(franchiseID = NULL){
 getPlayoffRecordVsFranchise<-function(franchiseID = NULL){
   if(!is.null(franchiseID)){
     stopifnot(is.numeric(franchiseID))
-    modifier<-paste0('cayenneExp=teamFranchiseId=', franchiseID)
+    modifier<-paste0('teamFranchiseId=', franchiseID)
   } else {
     modifier<-NULL
   }
@@ -109,7 +109,7 @@ getPlayoffRecordVsFranchise<-function(franchiseID = NULL){
 franchiseGeneric<-function(query, franchise = NULL){
   if(!is.null(franchise)){
     stopifnot(is.numeric(franchise))
-    modifier<-paste0('cayenneExp=franchiseId=', franchise)
+    modifier<-paste0('franchiseId=', franchise)
   } else {
     modifier<-NULL
   }

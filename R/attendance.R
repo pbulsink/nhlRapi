@@ -12,7 +12,7 @@ getAttendance<-function(season = NULL){
   if(!is.null(season)){
     stopifnot(is.numeric(season))
     stopifnot(validSeason(season))
-    modifier = paste0('cayenneExp=seasonId=', season)
+    modifier = paste0('seasonId=', season)
   } else {
     modifier = NULL
   }

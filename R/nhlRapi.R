@@ -39,6 +39,7 @@ getRecordAPI <- function(query, modifiers = NULL) {
   query_wrapper <- query
 
   if (!is.null(modifiers)) {
+    modifiers[1]<-paste0('cayenneExp=', modifiers[1])
     query_wrapper <- paste(query, paste0(modifiers,
                                          collapse = "%20and%20"), sep = "?")
   }

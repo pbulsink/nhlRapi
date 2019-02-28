@@ -20,7 +20,7 @@ getPlayoffDetails<-function(season = NULL, series = NULL){
       series <- c('Conference Quarterfinals', 'Conference Semifinals',
                   'Conference Finals', 'Stanley Cup Final')[series]
     }
-    modifiers<-c(modifiers, paste0('cayenneExp=seriesTitle="',series,'"'))
+    modifiers<-c(modifiers, paste0('seriesTitle="',series,'"'))
   }
 
   if(!is.null(season)){

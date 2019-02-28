@@ -6,7 +6,7 @@
 getOfficials<-function(active = FALSE){
   stopifnot(is.logical(active))
   if(active){
-    return(getRecordAPI(query='officials', modifiers = 'cayenneExp=active=true'))
+    return(getRecordAPI(query='officials', modifiers = 'active=true'))
   } else {
     return(getRecordAPI(query='officials'))
   }
