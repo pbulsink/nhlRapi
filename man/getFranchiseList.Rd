@@ -4,7 +4,12 @@
 \alias{getFranchiseList}
 \title{Get Franchise List}
 \usage{
-getFranchiseList()
+getFranchiseList(teamName = NULL, teamPlace = NULL)
+}
+\arguments{
+\item{teamName}{Optional, filter by team name}
+
+\item{teamPlace}{Optional, filter by team place}
 }
 \value{
 a list of all franchises in the NHL.

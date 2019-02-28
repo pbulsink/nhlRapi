@@ -2,10 +2,25 @@
 #'
 #' @description The API has separate tables for Franchises and Teams. This allowed for teams that moved locations to have the same franchise, or locations with multiple teams to have different franchise histories (Winnipeg). This call returns franchises, which has a corresponding id to teams (see \code{output$data$mostRecentTeamID}).
 #'
+#' @param teamName Optional, filter by team name
+#' @param teamPlace Optional, filter by team place
+#'
 #' @return a list of all franchises in the NHL.
 #' @export
-getFranchiseList<-function(){
-  return(franchiseGeneric(query = 'franchise'))
+getFranchiseList<-function(teamName = NULL, teamPlace = NULL){
+  modifiers <- NULL
+  if(!is.null(teamName)){
+    stopifnot(is.character(teamName))
+    modifiers <- c(modifiers, paste0('teamCommonName="',teamName,'"'))
+  }
+  if(!is.null(teamPlace)){
+    stopifnot(is.character(teamPlace))
+    modifiers <- c(modifiers, paste0('teamPlaceName="',teamName,'"'))
+  }
+  if(length(modifiers)>1){
+    modifiers<-modifiers[!is.null(modifiers)]
+  }
+  return(franchiseGeneric(query = 'franchise', modifier = modifiers))
 }
 
 #' Get Franchise Team Total Stats
@@ -106,12 +121,11 @@ getPlayoffRecordVsFranchise<-function(franchiseID = NULL){
   return(getRecordAPI(query = 'playoff-franchise-vs-franchise', modifiers = modifier))
 }
 
-franchiseGeneric<-function(query, franchise = NULL){
+franchiseGeneric<-function(query, franchise = NULL, modifier = NULL){
   if(!is.null(franchise)){
     stopifnot(is.numeric(franchise))
-    modifier<-paste0('franchiseId=', franchise)
-  } else {
-    modifier<-NULL
+    modifier<-c(modifier, paste0('franchiseId=', franchise))
+    modifier<-modifier[!is.null(modifier)]
   }
   return(getRecordAPI(query = query, modifiers = modifier))
 }
