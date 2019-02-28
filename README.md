@@ -50,7 +50,7 @@ The following items are covered by this API:
 - [X] Playoffs
 - [x] Trophy
 - [x] Milestones
-- [x] Officials
+- [X] Officials
 
 ### Filtering
 Some functions contain introductory filter options. Further filtering can be done once data is retrieved by the API. For example, the API can get all attendance records `getAttendance()` or a specific season `getAttendance(season = 20152016)`. While the web API allows for other field filtering (e.g. a call for `playoffAttendance>1000000`), the `R` api functions do not have all of these built in. 

@@ -15,3 +15,10 @@ Officials information
 \description{
 Get Officials
 }
+\examples{
+#Get all past officials
+officials<-getOfficials()
+
+#To pull only active officials:
+officials_active<-getOfficials(active = TRUE)
+}
