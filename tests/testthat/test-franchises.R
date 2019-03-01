@@ -22,17 +22,36 @@ test_that("franchise scrapings work", {
   expect_type(q, 'list')
   expect_equal(q$data$teamName, c('Vegas Golden Knights', 'Vegas Golden Knights'))
 
-  q<-getFranchiseRecords(38)
+  q<-getFranchiseRecords(franchiseID = 22)
   expect_type(q, 'list')
-  q<-getFranchiseSeasonResults(38)
+  q2<-getFranchiseRecords(franchiseName = 'New York Islanders')
+  expect_type(q2, 'list')
+  expect_equal(q, q2)
+
+  q<-getFranchiseSeasonResults(37)
   expect_type(q, 'list')
-  q<-getFranchiseDetail()
+  q2<-getFranchiseSeasonResults(franchiseName = 'Minnesota Wild')
+  expect_type(q2, 'list')
+  #different orders supplied, reorganizing q & q2
+  expect_equivalent(q$data[order(q$data$seasonId, q$data$gameTypeId),], q2$data[order(q2$data$seasonId, q2$data$gameTypeId),])
+
+  q<-getFranchiseDetail(teamID = 12)
+  q2<-getFranchiseDetail(franchiseID = 26)
   expect_type(q, 'list')
-  q<-getFranchiseDetail(54)
+  expect_type(q2, 'list')
+  expect_equal(q, q2)
+
+  q<-getFranchiseGoalieRecords(franchiseID = 30, active = TRUE)
+  q2<-getFranchiseGoalieRecords(franchiseName = 'Ottawa Senators', active = TRUE)
   expect_type(q, 'list')
-  expect_equal(q$total, 1)
-  q<-getFranchiseGoalieRecords(38)
+  expect_type(q2, 'list')
+  expect_equal(q, q2)
+
+  q<-getFranchiseGoalieRecords(franchiseID = 30, firstName = "Patrick", lastName = "Lalime")
   expect_type(q, 'list')
+  expect_equal(nrow(q$data), 1)
+
+
   q<-getFranchiseSkaterRecords(38)
   expect_type(q, 'list')
   q<-getAllTimeRecordVsFranchise()

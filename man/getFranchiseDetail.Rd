@@ -4,10 +4,12 @@
 \alias{getFranchiseDetail}
 \title{Get Franchise Detailed Information}
 \usage{
-getFranchiseDetail(teamID = NULL)
+getFranchiseDetail(teamID = NULL, franchiseID = NULL)
 }
 \arguments{
 \item{teamID}{Optional team ID to filter results.}
+
+\item{franchiseID}{Optional franchise ID to filter results.}
 }
 \value{
 detailed information for evey franchise, including captains, coaches, GMs, retired numbers, etc.

@@ -25,10 +25,11 @@ getFranchiseList<-function(teamName = NULL, teamPlace = NULL){
     modifiers <- c(modifiers, paste0('teamPlaceName="',teamPlace,'"'))
   }
   if(length(modifiers)>1){
-    modifiers<-modifiers[!is.null(modifiers)]
+    modifiers <- modifiers[!is.null(modifiers)]
   }
   return(franchiseGeneric(query = 'franchise', modifier = modifiers))
 }
+
 
 #' Get Franchise Team Total Stats
 #'
@@ -62,11 +63,9 @@ getFranchiseTeamTotal<-function(franchiseID = NULL, franchiseName = NULL, gameTy
     stopifnot((gameType == 2 | gameType == 3))
     modifiers <- c(modifiers, paste0('gameTypeId=',gameType))
   }
-  if(length(modifiers) > 1){
-    modifiers<-modifiers[!is.null(modifiers)]
-  }
   return(franchiseGeneric(query = 'franchise-team-totals', franchise = franchiseID, modifier = modifiers))
 }
+
 
 #' Get Franchise Record Stats
 #'
@@ -90,11 +89,9 @@ getFranchiseRecords<-function(franchiseID = NULL, franchiseName = NULL){
     stopifnot(is.character(franchiseName))
     modifiers <- c(modifiers, paste0('franchiseName="',franchiseName,'"'))
   }
-  if(length(modifiers) > 1){
-    modifiers<-modifiers[!is.null(modifiers)]
-  }
   return(franchiseGeneric(query = 'franchise-season-records', franchise = franchiseID, modifier = modifiers))
 }
+
 
 #' Get Franchise Season Results Stats
 #'
@@ -103,53 +100,92 @@ getFranchiseRecords<-function(franchiseID = NULL, franchiseName = NULL){
 #'
 #' @return Season record stats for every franchise.
 #' @export
-getFranchiseSeasonResults<-function(franchiseID = NULL, franchiseName = NULL){
+getFranchiseSeasonResults<-function(franchiseID = NULL, franchiseName = NULL, gameType=NULL){
   modifiers<-NULL
   if(!is.null(franchiseName)){
     stopifnot(is.character(franchiseName))
     modifiers <- c(modifiers, paste0('teamName="',franchiseName,'"'))
   }
-  if(length(modifiers) > 1){
-    modifiers<-modifiers[!is.null(modifiers)]
+  if(!is.null(gameType)){
+    stopifnot((gameType == 2 | gameType == 3))
+    modifiers <- c(modifiers, paste0('gameTypeId=',gameType))
   }
   return(franchiseGeneric(query = 'franchise-season-results', franchise = franchiseID, modifier = modifiers))
 }
 
+
 #' Get Franchise Detailed Information
 #'
 #' @param teamID Optional team ID to filter results.
+#' @param franchiseID Optional franchise ID to filter results.
 #'
 #' @return detailed information for evey franchise, including captains, coaches, GMs, retired numbers, etc.
 #' @export
-getFranchiseDetail<-function(teamID = NULL){
+getFranchiseDetail<-function(teamID = NULL, franchiseID = NULL){
+  modifiers <- NULL
   if(!is.null(teamID)){
     stopifnot(is.numeric(teamID))
-    modifier<-paste0('mostRecentTeamId=', teamID)
-  } else {
-    modifier<-NULL
+    modifiers<-paste0('mostRecentTeamId=', teamID)
   }
-  return(getRecordAPI(query = 'franchise-detail', modifiers = modifier))
+  if(!is.null(franchiseID)){
+    stopifnot(is.numeric(franchiseID))
+    modifiers<-paste0('id=', franchiseID)
+  }
+  return(getRecordAPI(query = 'franchise-detail', modifier = modifiers))
 }
+
 
 #' Get Franchise Goalie Record Stats
 #'
-#' @param franchiseID Optional franchise ID to filter results.
+#' @description Returns goalie history and records. Includes career (with franchise) Win/Loss/Tie, shutouts, most goals against, etc.
 #'
-#' @return Season record stats for every franchise.
+#' @param franchiseID Optional franchise ID to filter results.
+#' @param franchiseName Optional franchise name to filter results.
+#' @param firstName Optional, search for goalie by first name. Suggest using \code{lastName} to focus results.
+#' @param lastName Optional, serach for a goalie by last name. Suggest using \code{firstName} to focus results.
+#' @param active Optional, boolean, limit results to active players. Active can be on any team in the league.
+#'
+#' @return Goalie record stats for every franchise.
 #' @export
-getFranchiseGoalieRecords<-function(franchiseID = NULL){
-  return(franchiseGeneric(query = 'franchise-goalie-records', franchise = franchiseID))
+#'
+#' @examples
+#' #Get active Ottawa Senators Goalies
+#' goalies<-getFranchiseGoalieRecords(franchiseName = "Ottawa Senators", active = TRUE)
+#'
+#' #Search for a Goalie
+#' lalime<-getFranchiseGoalieRecords(firstName = "Patrick", lastName = "Lalime")
+getFranchiseGoalieRecords<-function(franchiseID = NULL, franchiseName = NULL, firstName = NULL, lastName = NULL, active = FALSE){
+  stopifnot(is.logical(active))
+  modifiers<-NULL
+  if(!is.null(franchiseName)){
+    stopifnot(is.character(franchiseName))
+    modifiers <- c(modifiers, paste0('franchiseName="',franchiseName,'"'))
+  }
+  if(!is.null(firstName)){
+    stopifnot(is.character(firstName))
+    modifiers <- c(modifiers, paste0('firstName="',firstName,'"'))
+  }
+  if(!is.null(lastName)){
+    stopifnot(is.character(lastName))
+    modifiers <- c(modifiers, paste0('lastName="',lastName,'"'))
+  }
+  if(active){
+    modifiers <- c(modifiers, 'activePlayer=TRUE')
+  }
+  return(franchiseGeneric(query = 'franchise-goalie-records', franchise = franchiseID, modifier = modifiers))
 }
+
 
 #' Get Franchise Season Record Stats
 #'
 #' @param franchiseID Optional franchise ID to filter results.
 #'
-#' @return Season record stats for every franchise.
+#' @return Skater record stats for every franchise.
 #' @export
 getFranchiseSkaterRecords<-function(franchiseID = NULL){
   return(franchiseGeneric(query = 'franchise-skater-records', franchise = franchiseID))
 }
+
 
 #' Get Franchise Head to Head record
 #'
@@ -167,6 +203,7 @@ getAllTimeRecordVsFranchise<-function(franchiseID = NULL){
   return(getRecordAPI(query = 'all-time-record-vs-franchise', modifiers = modifier))
 }
 
+
 #' Get Franchise Head to Head playoff record
 #'
 #' @param franchiseID Optional franchise ID to filter results.
@@ -183,11 +220,11 @@ getPlayoffRecordVsFranchise<-function(franchiseID = NULL){
   return(getRecordAPI(query = 'playoff-franchise-vs-franchise', modifiers = modifier))
 }
 
+
 franchiseGeneric<-function(query, franchise = NULL, modifier = NULL){
   if(!is.null(franchise)){
     stopifnot(is.numeric(franchise))
     modifier<-c(modifier, paste0('franchiseId=', franchise))
-    modifier<-modifier[!is.null(modifier)]
   }
   return(getRecordAPI(query = query, modifiers = modifier))
 }

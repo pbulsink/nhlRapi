@@ -10,7 +10,7 @@ getFranchiseSkaterRecords(franchiseID = NULL)
 \item{franchiseID}{Optional franchise ID to filter results.}
 }
 \value{
-Season record stats for every franchise.
+Skater record stats for every franchise.
 }
 \description{
 Get Franchise Season Record Stats

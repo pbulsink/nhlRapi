@@ -4,14 +4,30 @@
 \alias{getFranchiseGoalieRecords}
 \title{Get Franchise Goalie Record Stats}
 \usage{
-getFranchiseGoalieRecords(franchiseID = NULL)
+getFranchiseGoalieRecords(franchiseID = NULL, franchiseName = NULL,
+  firstName = NULL, lastName = NULL, active = FALSE)
 }
 \arguments{
 \item{franchiseID}{Optional franchise ID to filter results.}
+
+\item{franchiseName}{Optional franchise name to filter results.}
+
+\item{firstName}{Optional, search for goalie by first name. Suggest using \code{lastName} to focus results.}
+
+\item{lastName}{Optional, serach for a goalie by last name. Suggest using \code{firstName} to focus results.}
+
+\item{active}{Optional, boolean, limit results to active players. Active can be on any team in the league.}
 }
 \value{
-Season record stats for every franchise.
+Goalie record stats for every franchise.
 }
 \description{
-Get Franchise Goalie Record Stats
+Returns goalie history and records. Includes career (with franchise) Win/Loss/Tie, shutouts, most goals against, etc.
+}
+\examples{
+#Get active Ottawa Senators Goalies
+goalies<-getFranchiseGoalieRecords(franchiseName = "Ottawa Senators", active = TRUE)
+
+#Search for a Goalie
+lalime<-getFranchiseGoalieRecords(firstName = "Patrick", lastName = "Lalime")
 }
