@@ -24,9 +24,6 @@ getFranchiseList<-function(teamName = NULL, teamPlace = NULL){
     stopifnot(is.character(teamPlace))
     modifiers <- c(modifiers, paste0('teamPlaceName="',teamPlace,'"'))
   }
-  if(length(modifiers)>1){
-    modifiers <- modifiers[!is.null(modifiers)]
-  }
   return(franchiseGeneric(query = 'franchise', modifier = modifiers))
 }
 
