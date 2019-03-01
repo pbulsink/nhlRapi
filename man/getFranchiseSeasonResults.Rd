@@ -11,6 +11,8 @@ getFranchiseSeasonResults(franchiseID = NULL, franchiseName = NULL,
 \item{franchiseID}{Optional franchise ID to filter results.}
 
 \item{franchiseName}{Optional franchise name to filter results.}
+
+\item{gameType}{Optional, limit results to regular season (2) or playoffs (3). Accepts numerical input only}
 }
 \value{
 Season record stats for every franchise.

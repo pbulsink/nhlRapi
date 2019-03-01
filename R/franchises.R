@@ -97,6 +97,7 @@ getFranchiseRecords<-function(franchiseID = NULL, franchiseName = NULL){
 #'
 #' @param franchiseID Optional franchise ID to filter results.
 #' @param franchiseName Optional franchise name to filter results.
+#' @param gameType Optional, limit results to regular season (2) or playoffs (3). Accepts numerical input only
 #'
 #' @return Season record stats for every franchise.
 #' @export
@@ -131,7 +132,7 @@ getFranchiseDetail<-function(teamID = NULL, franchiseID = NULL){
     stopifnot(is.numeric(franchiseID))
     modifiers<-paste0('id=', franchiseID)
   }
-  return(getRecordAPI(query = 'franchise-detail', modifier = modifiers))
+  return(getRecordAPI(query = 'franchise-detail', modifiers = modifiers))
 }
 
 
