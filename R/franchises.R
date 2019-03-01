@@ -2,11 +2,18 @@
 #'
 #' @description The API has separate tables for Franchises and Teams. This allowed for teams that moved locations to have the same franchise, or locations with multiple teams to have different franchise histories (Winnipeg). This call returns franchises, which has a corresponding id to teams (see \code{output$data$mostRecentTeamID}).
 #'
-#' @param teamName Optional, filter by team name
+#' @param teamName Optional, filter by team name (e.g. "Golden Knights")
 #' @param teamPlace Optional, filter by team place
 #'
 #' @return a list of all franchises in the NHL.
 #' @export
+#'
+#' @examples
+#' franchises<-getFranchiseList()
+#'
+#' #or, get specific franchise info:
+#' franchise<-getFranchiseList(teamName = "Golden Knights")
+#' franchise<-getFranchiseList(teamPlace = "Vegas")
 getFranchiseList<-function(teamName = NULL, teamPlace = NULL){
   modifiers <- NULL
   if(!is.null(teamName)){
@@ -15,7 +22,7 @@ getFranchiseList<-function(teamName = NULL, teamPlace = NULL){
   }
   if(!is.null(teamPlace)){
     stopifnot(is.character(teamPlace))
-    modifiers <- c(modifiers, paste0('teamPlaceName="',teamName,'"'))
+    modifiers <- c(modifiers, paste0('teamPlaceName="',teamPlace,'"'))
   }
   if(length(modifiers)>1){
     modifiers<-modifiers[!is.null(modifiers)]
@@ -25,32 +32,87 @@ getFranchiseList<-function(teamName = NULL, teamPlace = NULL){
 
 #' Get Franchise Team Total Stats
 #'
+#' @description Gets team total stats (total goals scored, etc.). Results are split by 'gameType' (2 = regular season, 3 = playoff).
+#'
 #' @param franchiseID Optional franchise ID to filter results.
+#' @param franchiseName Optional, only get results for team by name (e.g. "New Jersey Devils")
+#' @param gameType Optional, numeric, filters to regular season (2) or playoffs (3) only. Otherwise returns both as separate sums.
+#' @param active Optional, limit results to active franchises. Default: False
 #'
 #' @return total stats for every franchise.
 #' @export
-getFranchiseTeamTotal<-function(franchiseID = NULL){
-  return(franchiseGeneric(query = 'franchise-team-totals', franchise = franchiseID))
+#'
+#' @examples
+#' #Get franchise totals for the Colorado Avalanche
+#' avs_totals<-getFranchiseTeamTotal(franchiseName = "Colorado Avalanche")
+#'
+#' #Or, see all of the franchise's totals (franchise = 27), including Quebec Nordiques
+#' avs_nordiques_totals<-getFranchiseTeamTotal(franchiseID = 27)
+getFranchiseTeamTotal<-function(franchiseID = NULL, franchiseName = NULL, gameType=NULL, active = FALSE){
+  modifiers<-NULL
+  stopifnot(is.logical(active))
+  if(active){
+    modifiers<-c(modifiers, "lastSeasonId=null")
+  }
+  if(!is.null(franchiseName)){
+    stopifnot(is.character(franchiseName))
+    modifiers <- c(modifiers, paste0('teamName="',franchiseName,'"'))
+  }
+  if(!is.null(gameType)){
+    stopifnot((gameType == 2 | gameType == 3))
+    modifiers <- c(modifiers, paste0('gameTypeId=',gameType))
+  }
+  if(length(modifiers) > 1){
+    modifiers<-modifiers[!is.null(modifiers)]
+  }
+  return(franchiseGeneric(query = 'franchise-team-totals', franchise = franchiseID, modifier = modifiers))
 }
 
-#' Get Franchise Season Record Stats
+#' Get Franchise Record Stats
+#'
+#' @description Retrieves franchise records (best/worst seasons, most goals in a game, etc).
 #'
 #' @param franchiseID Optional franchise ID to filter results.
+#' @param franchiseName Optional franchise name to filter results.
 #'
-#' @return Season record stats for every franchise.
+#' @return Season record stats for every (filtered) franchise.
 #' @export
-getFranchiseSeasonRecords<-function(franchiseID = NULL){
-  return(franchiseGeneric(query = 'franchise-season-records', franchise = franchiseID))
+#'
+#' @examples
+#' #See the records for franchise 23:
+#' records<-getFranchiseRecords(franchiseID = 23)
+#'
+#' #Or, knowing that franchise 23 is New Jersey Devils:
+#' records<-getFranchiseRecords(franchiseName = "New Jersey Devils")
+getFranchiseRecords<-function(franchiseID = NULL, franchiseName = NULL){
+  modifiers<-NULL
+  if(!is.null(franchiseName)){
+    stopifnot(is.character(franchiseName))
+    modifiers <- c(modifiers, paste0('franchiseName="',franchiseName,'"'))
+  }
+  if(length(modifiers) > 1){
+    modifiers<-modifiers[!is.null(modifiers)]
+  }
+  return(franchiseGeneric(query = 'franchise-season-records', franchise = franchiseID, modifier = modifiers))
 }
 
 #' Get Franchise Season Results Stats
 #'
 #' @param franchiseID Optional franchise ID to filter results.
+#' @param franchiseName Optional franchise name to filter results.
 #'
 #' @return Season record stats for every franchise.
 #' @export
-getFranchiseSeasonResults<-function(franchiseID = NULL){
-  return(franchiseGeneric(query = 'franchise-season-results', franchise = franchiseID))
+getFranchiseSeasonResults<-function(franchiseID = NULL, franchiseName = NULL){
+  modifiers<-NULL
+  if(!is.null(franchiseName)){
+    stopifnot(is.character(franchiseName))
+    modifiers <- c(modifiers, paste0('teamName="',franchiseName,'"'))
+  }
+  if(length(modifiers) > 1){
+    modifiers<-modifiers[!is.null(modifiers)]
+  }
+  return(franchiseGeneric(query = 'franchise-season-results', franchise = franchiseID, modifier = modifiers))
 }
 
 #' Get Franchise Detailed Information

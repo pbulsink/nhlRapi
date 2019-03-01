@@ -4,14 +4,28 @@
 \alias{getFranchiseTeamTotal}
 \title{Get Franchise Team Total Stats}
 \usage{
-getFranchiseTeamTotal(franchiseID = NULL)
+getFranchiseTeamTotal(franchiseID = NULL, franchiseName = NULL,
+  gameType = NULL, active = FALSE)
 }
 \arguments{
 \item{franchiseID}{Optional franchise ID to filter results.}
+
+\item{franchiseName}{Optional, only get results for team by name (e.g. "New Jersey Devils")}
+
+\item{gameType}{Optional, numeric, filters to regular season (2) or playoffs (3) only. Otherwise returns both as separate sums.}
+
+\item{active}{Optional, limit results to active franchises. Default: False}
 }
 \value{
 total stats for every franchise.
 }
 \description{
-Get Franchise Team Total Stats
+Gets team total stats (total goals scored, etc.). Results are split by 'gameType' (2 = regular season, 3 = playoff).
+}
+\examples{
+#Get franchise totals for the Colorado Avalanche
+avs_totals<-getFranchiseTeamTotal(franchiseName = "Colorado Avalanche")
+
+#Or, see all of the franchise's totals (franchise = 27), including Quebec Nordiques
+avs_nordiques_totals<-getFranchiseTeamTotal(franchiseID = 27)
 }

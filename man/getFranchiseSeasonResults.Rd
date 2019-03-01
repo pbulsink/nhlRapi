@@ -4,10 +4,12 @@
 \alias{getFranchiseSeasonResults}
 \title{Get Franchise Season Results Stats}
 \usage{
-getFranchiseSeasonResults(franchiseID = NULL)
+getFranchiseSeasonResults(franchiseID = NULL, franchiseName = NULL)
 }
 \arguments{
 \item{franchiseID}{Optional franchise ID to filter results.}
+
+\item{franchiseName}{Optional franchise name to filter results.}
 }
 \value{
 Season record stats for every franchise.

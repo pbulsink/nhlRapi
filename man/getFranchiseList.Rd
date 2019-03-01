@@ -7,7 +7,7 @@
 getFranchiseList(teamName = NULL, teamPlace = NULL)
 }
 \arguments{
-\item{teamName}{Optional, filter by team name}
+\item{teamName}{Optional, filter by team name (e.g. "Golden Knights")}
 
 \item{teamPlace}{Optional, filter by team place}
 }
@@ -16,4 +16,11 @@ a list of all franchises in the NHL.
 }
 \description{
 The API has separate tables for Franchises and Teams. This allowed for teams that moved locations to have the same franchise, or locations with multiple teams to have different franchise histories (Winnipeg). This call returns franchises, which has a corresponding id to teams (see \code{output$data$mostRecentTeamID}).
+}
+\examples{
+franchises<-getFranchiseList()
+
+#or, get specific franchise info:
+franchise<-getFranchiseList(teamName = "Golden Knights")
+franchise<-getFranchiseList(teamPlace = "Vegas")
 }
