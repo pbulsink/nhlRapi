@@ -1,6 +1,6 @@
 # NHL API for R
 
-[![Travis build status](https://travis-ci.org/pbulsink/nhlRapi.svg?branch=master)](https://travis-ci.org/pbulsink/nhlRapi) [![Coverage status](https://codecov.io/gh/pbulsink/nhlRapi/branch/master/graph/badge.svg)](https://codecov.io/github/pbulsink/nhlRapi?branch=master)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/pbulsink/nhlRapi?branch=master&svg=true)](https://ci.appveyor.com/project/pbulsink/nhlRapi) [![Coverage status](https://codecov.io/gh/pbulsink/nhlRapi/branch/master/graph/badge.svg)](https://codecov.io/github/pbulsink/nhlRapi?branch=master)
 
 ## Introduction
 
