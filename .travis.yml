@@ -12,5 +12,10 @@ r:
   - devel
 sudo: false
 cache: packages
+
+env:
+  global:
+    - _R_CHECK_SYSTEM_CLOCK_=false
+
 after_success:
   - Rscript -e 'covr::codecov()'
