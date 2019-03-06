@@ -60,6 +60,7 @@ getProspect <- function(prospect = NULL) {
 #' @param draftTeamID Optional, drafting TEAM ID
 #' @param amateurLeague Optional, drafted player previous amateur league. Many NA values in API database
 #' @param country Optional, drafted player country
+#' @param playerID Optional, player ID
 #'
 #' @return API results from the drafts endpoint, filtered using any parameters
 #' @export
@@ -67,7 +68,7 @@ getProspect <- function(prospect = NULL) {
 #' @examples
 #' #See all G drafted in 2006:
 #' getDraftRecords(position="G", draftYear = 2006)
-getDraftRecords<-function(firstName = NULL, lastName = NULL, draftYear = NULL, overallPickNumber = NULL, weight = NULL, height = NULL, position = NULL, roundNumber = NULL, draftTeamID = NULL, amateurLeague = NULL, country = NULL){
+getDraftRecords<-function(firstName = NULL, lastName = NULL, draftYear = NULL, overallPickNumber = NULL, weight = NULL, height = NULL, position = NULL, roundNumber = NULL, draftTeamID = NULL, amateurLeague = NULL, country = NULL, playerID = NULL){
   modifiers<-NULL
   if(!is.null(firstName)){
     stopifnot(is.character(firstName))
@@ -102,6 +103,10 @@ getDraftRecords<-function(firstName = NULL, lastName = NULL, draftYear = NULL, o
   if(!is.null(roundNumber)){
     stopifnot(is.numeric(roundNumber))
     modifiers <- c(modifiers, paste0('roundNumber=', roundNumber))
+  }
+  if(!is.null(playerID)){
+    stopifnot(is.numeric(playerID))
+    modifiers <- c(modifiers, paste0('playerId=', playerID))
   }
   if(!is.null(draftTeamID)){
     stopifnot(is.numeric(draftTeamID))

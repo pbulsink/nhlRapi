@@ -105,7 +105,7 @@ getPlayerRecord<- function(firstName = NULL, lastName = NULL, middleName = NULL,
   }
   if(!is.null(playerID)){
     stopifnot(is.numeric(playerID))
-    modifiers <- c(modifiers, paste0('playerId=', playerID))
+    modifiers <- c(modifiers, paste0('id=', playerID))
   }
   if(!is.null(position)){
     stopifnot(is.character(position))
