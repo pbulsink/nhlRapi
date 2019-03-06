@@ -4,10 +4,17 @@
 \alias{getAllTimeRecordVsFranchise}
 \title{Get Franchise Head to Head record}
 \usage{
-getAllTimeRecordVsFranchise(franchiseID = NULL)
+getAllTimeRecordVsFranchise(franchiseID = NULL, franchiseName = NULL,
+  opponentName = NULL, opponentID = NULL)
 }
 \arguments{
 \item{franchiseID}{Optional franchise ID to filter results.}
+
+\item{franchiseName}{Optional franchise name to filter results.}
+
+\item{opponentName}{Optional opponent name to filter results.}
+
+\item{opponentID}{Optional opponent franchise ID to filter results.}
 }
 \value{
 Head to head records for every franchise.

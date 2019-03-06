@@ -177,45 +177,95 @@ getFranchiseGoalieRecords<-function(franchiseID = NULL, franchiseName = NULL, fi
 #' Get Franchise Season Record Stats
 #'
 #' @param franchiseID Optional franchise ID to filter results.
+#' @param franchiseName Optional franchise name to filter results.
+#' @param firstName Optional, search for goalie by first name. Suggest using \code{lastName} to focus results.
+#' @param lastName Optional, serach for a goalie by last name. Suggest using \code{firstName} to focus results.
+#' @param active Optional, boolean, limit results to active players. Active can be on any team in the league.
+#'
 #'
 #' @return Skater record stats for every franchise.
 #' @export
-getFranchiseSkaterRecords<-function(franchiseID = NULL){
-  return(franchiseGeneric(query = 'franchise-skater-records', franchise = franchiseID))
+getFranchiseSkaterRecords<-function(franchiseID = NULL, franchiseName = NULL, firstName = NULL, lastName = NULL, active = FALSE){
+  stopifnot(is.logical(active))
+  modifiers<-NULL
+  if(!is.null(franchiseName)){
+    stopifnot(is.character(franchiseName))
+    modifiers <- c(modifiers, paste0('franchiseName="',franchiseName,'"'))
+  }
+  if(!is.null(firstName)){
+    stopifnot(is.character(firstName))
+    modifiers <- c(modifiers, paste0('firstName="',firstName,'"'))
+  }
+  if(!is.null(lastName)){
+    stopifnot(is.character(lastName))
+    modifiers <- c(modifiers, paste0('lastName="',lastName,'"'))
+  }
+  if(active){
+    modifiers <- c(modifiers, 'activePlayer=TRUE')
+  }
+  return(franchiseGeneric(query = 'franchise-skater-records', franchise = franchiseID, modifier = modifiers))
 }
 
 
 #' Get Franchise Head to Head record
 #'
 #' @param franchiseID Optional franchise ID to filter results.
+#' @param franchiseName Optional franchise name to filter results.
+#' @param opponentName Optional opponent name to filter results.
+#' @param opponentID Optional opponent franchise ID to filter results.
 #'
 #' @return Head to head records for every franchise.
 #' @export
-getAllTimeRecordVsFranchise<-function(franchiseID = NULL){
+getAllTimeRecordVsFranchise<-function(franchiseID = NULL, franchiseName = NULL, opponentName = NULL, opponentID = NULL){
+  modifiers<-NULL
+  if(!is.null(franchiseName)){
+    stopifnot(is.character(franchiseName))
+    modifiers <- c(modifiers, paste0('franchiseName="',franchiseName,'"'))
+  }
+  if(!is.null(opponentName)){
+    stopifnot(is.character(opponentName))
+    modifiers <- c(modifiers, paste0('opponentFranchiseName="',opponentName,'"'))
+  }
   if(!is.null(franchiseID)){
     stopifnot(is.numeric(franchiseID))
-    modifier<-paste0('teamFranchiseId=', franchiseID)
-  } else {
-    modifier<-NULL
+    modifiers<-paste0('teamFranchiseId=', franchiseID)
   }
-  return(getRecordAPI(query = 'all-time-record-vs-franchise', modifiers = modifier))
+  if(!is.null(opponentID)){
+    stopifnot(is.numeric(opponentID))
+    modifiers<-paste0('opponentFranchiseId=', opponentID)
+  }
+  return(getRecordAPI(query = 'all-time-record-vs-franchise', modifiers = modifiers))
 }
 
 
 #' Get Franchise Head to Head playoff record
 #'
 #' @param franchiseID Optional franchise ID to filter results.
+#' @param franchiseName Optional franchise name to filter results.
+#' @param opponentName Optional opponent name to filter results.
+#' @param opponentID Optional opponent franchise ID to filter results.
 #'
 #' @return Head to head records for every franchise' playoff games.
 #' @export
-getPlayoffRecordVsFranchise<-function(franchiseID = NULL){
+getPlayoffRecordVsFranchise<-function(franchiseID = NULL, franchiseName = NULL, opponentName = NULL, opponentID = NULL){
+  modifiers<-NULL
+  if(!is.null(franchiseName)){
+    stopifnot(is.character(franchiseName))
+    modifiers <- c(modifiers, paste0('teamName="',franchiseName,'"'))
+  }
+  if(!is.null(opponentName)){
+    stopifnot(is.character(opponentName))
+    modifiers <- c(modifiers, paste0('opponentTeamName="',opponentName,'"'))
+  }
   if(!is.null(franchiseID)){
     stopifnot(is.numeric(franchiseID))
-    modifier<-paste0('teamFranchiseId=', franchiseID)
-  } else {
-    modifier<-NULL
+    modifiers<-paste0('teamFranchiseId=', franchiseID)
   }
-  return(getRecordAPI(query = 'playoff-franchise-vs-franchise', modifiers = modifier))
+  if(!is.null(opponentID)){
+    stopifnot(is.numeric(opponentID))
+    modifiers<-paste0('opponentFranchiseId=', opponentID)
+  }
+  return(getRecordAPI(query = 'playoff-franchise-vs-franchise', modifiers = modifiers))
 }
 
 

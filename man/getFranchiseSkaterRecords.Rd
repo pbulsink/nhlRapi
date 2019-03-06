@@ -4,10 +4,19 @@
 \alias{getFranchiseSkaterRecords}
 \title{Get Franchise Season Record Stats}
 \usage{
-getFranchiseSkaterRecords(franchiseID = NULL)
+getFranchiseSkaterRecords(franchiseID = NULL, franchiseName = NULL,
+  firstName = NULL, lastName = NULL, active = FALSE)
 }
 \arguments{
 \item{franchiseID}{Optional franchise ID to filter results.}
+
+\item{franchiseName}{Optional franchise name to filter results.}
+
+\item{firstName}{Optional, search for goalie by first name. Suggest using \code{lastName} to focus results.}
+
+\item{lastName}{Optional, serach for a goalie by last name. Suggest using \code{firstName} to focus results.}
+
+\item{active}{Optional, boolean, limit results to active players. Active can be on any team in the league.}
 }
 \value{
 Skater record stats for every franchise.

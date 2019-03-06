@@ -55,17 +55,39 @@ test_that("franchise scrapings work", {
   expect_type(q, 'list')
   expect_equal(nrow(q$data), 1)
 
+  q<-getFranchiseSkaterRecords(franchiseID = 27, active = TRUE)
+  q2<-getFranchiseSkaterRecords(franchiseName = 'Colorado Avalanche', active = TRUE)
+  expect_type(q, 'list')
+  expect_type(q2, 'list')
+  expect_equal(q, q2)
 
-  q<-getFranchiseSkaterRecords(38)
+  q<-getFranchiseSkaterRecords(franchiseID = 27, firstName = "Joe", lastName = "Sakic")
   expect_type(q, 'list')
-  q<-getAllTimeRecordVsFranchise()
+  expect_equal(nrow(q$data), 1)
+
+  q<-getAllTimeRecordVsFranchise(franchiseID = 11)
   expect_type(q, 'list')
-  q<-getAllTimeRecordVsFranchise(38)
+  q2<-getAllTimeRecordVsFranchise(franchiseName = "Chicago Blackhawks")
+  expect_type(q2, 'list')
+  expect_equivalent(q$data[order(q$data$id),], q2$data[order(q2$data$id),])
+
+  q<-getAllTimeRecordVsFranchise(opponentName = "Columbus Blue Jackets")
   expect_type(q, 'list')
-  q<-getPlayoffRecordVsFranchise()
+  q2<-getAllTimeRecordVsFranchise(opponentID = 36)
+  expect_type(q2, 'list')
+  expect_equivalent(q, q2)
+
+  q<-getPlayoffRecordVsFranchise(franchiseID = 12)
   expect_type(q, 'list')
-  q<-getPlayoffRecordVsFranchise(38)
+  q2<-getPlayoffRecordVsFranchise(franchiseName = "Detroit Red Wings")
+  expect_type(q2, 'list')
+  expect_equivalent(q, q2)
+
+  q<-getPlayoffRecordVsFranchise(opponentName = "Florida Panthers")
   expect_type(q, 'list')
+  q2<-getPlayoffRecordVsFranchise(opponentID = 33)
+  expect_type(q2, 'list')
+  expect_equivalent(q, q2)
 
   #Expected Failures
   expect_error(q<-getFranchiseList(teamName = 123))
