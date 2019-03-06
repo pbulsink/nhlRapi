@@ -58,6 +58,8 @@ getRecordAPI <- function(query, modifiers = NULL) {
 baseAPI<-function(call_url, query_wrapper, type){
   ua <- httr::user_agent("http://github.com/pbulsink/nhlRapi")
 
+  call_url<-gsub(' ', '%20', call_url)
+
   response <- httr::GET(call_url, ua)
 
   # Stop if not 200 ((OK)) returned
