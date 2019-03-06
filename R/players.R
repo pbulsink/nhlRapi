@@ -83,8 +83,11 @@ getPlayerStatTypes <- function() {
 #' @param position Optional, filter by position
 #' @param nationality Optional, filter by nationality
 #'
-#' @return
+#' @return Player info from API, filtered with selected filters
 #' @export
+#' @examples
+#' #Pull up Dave Andreychuk's information
+#' getPlayerRecord(firstName = 'Dave', lastName = 'Andreychuk')
 getPlayerRecord<- function(firstName = NULL, lastName = NULL, middleName = NULL, position = NULL, playerID = NULL, nationality = NULL) {
   modifiers <- NULL
   if(!is.null(firstName)){
@@ -101,7 +104,7 @@ getPlayerRecord<- function(firstName = NULL, lastName = NULL, middleName = NULL,
   }
   if(!is.null(nationality)){
     stopifnot(is.character(nationality))
-    modifiers <- c(modifiers, paste0('lastName="',nationality,'"'))
+    modifiers <- c(modifiers, paste0('nationality="',nationality,'"'))
   }
   if(!is.null(playerID)){
     stopifnot(is.numeric(playerID))
@@ -109,12 +112,8 @@ getPlayerRecord<- function(firstName = NULL, lastName = NULL, middleName = NULL,
   }
   if(!is.null(position)){
     stopifnot(is.character(position))
-    stopifnot(position %in% c('G','D','F','RW','LW','C','D/F','LW/D','C/RW','LW/RW','C/LW','RW/D','C/D'))
+    stopifnot(position %in% c('G','D','F','RW','LW','C','D/F','LW/D','C/RW','LW/RW','C/LW','RW/D','C/D', 'L', 'R'))
     modifiers <- c(modifiers, paste0('position="',position,'"'))
   }
   return(getRecordAPI(query='player', modifiers = modifiers))
 }
-#
-# searchPlayerName <- function(name, nametype){
-#   return(NA)
-# }

@@ -97,7 +97,7 @@ getDraftRecords<-function(firstName = NULL, lastName = NULL, draftYear = NULL, o
   }
   if(!is.null(position)){
     stopifnot(is.character(position))
-    stopifnot(position %in% c('G','D','F','RW','LW','C','D/F','LW/D','C/RW','LW/RW','C/LW','RW/D','C/D'))
+    stopifnot(position %in% c('G','D','F','RW','LW','C','D/F','LW/D','C/RW','LW/RW','C/LW','RW/D','C/D', 'L', 'R'))
     modifiers <- c(modifiers, paste0('position="',position,'"'))
   }
   if(!is.null(roundNumber)){

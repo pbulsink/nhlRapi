@@ -51,7 +51,7 @@ The following items are covered by this API:
 - [X] Draft
 - [X] Records
 - [X] Franchise
-- [x] Player
+- [X] Player
 - [X] Playoffs
 - [X] Trophy
 - [X] Milestones

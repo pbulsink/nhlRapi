@@ -20,6 +20,13 @@ getPlayerRecord(firstName = NULL, lastName = NULL, middleName = NULL,
 
 \item{nationality}{Optional, filter by nationality}
 }
+\value{
+Player info from API, filtered with selected filters
+}
 \description{
 Returns lots of metadata on players. Search by ID, first, middle & last name, position, country,
+}
+\examples{
+#Pull up Dave Andreychuk's information
+getPlayerRecord(firstName = 'Dave', lastName = 'Andreychuk')
 }
