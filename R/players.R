@@ -72,9 +72,48 @@ getPlayerStatTypes <- function() {
   return(unname(unlist(getStatAPI("statTypes"))))
 }
 
-# getPlayerRecord<- function(playerID) {
-#   return(NA)
-# }
+#' Get Player Information
+#'
+#' Returns lots of metadata on players. Search by ID, first, middle & last name, position, country,
+#'
+#' @param playerID Optional, numeric player id
+#' @param firstName Optional, filter by first name
+#' @param lastName Optional, filter by last name
+#' @param middleName Optional, filter by middle name
+#' @param position Optional, filter by position
+#' @param nationality Optional, filter by nationality
+#'
+#' @return
+#' @export
+getPlayerRecord<- function(firstName = NULL, lastName = NULL, middleName = NULL, position = NULL, playerID = NULL, nationality = NULL) {
+  modifiers <- NULL
+  if(!is.null(firstName)){
+    stopifnot(is.character(firstName))
+    modifiers <- c(modifiers, paste0('firstName="',firstName,'"'))
+  }
+  if(!is.null(lastName)){
+    stopifnot(is.character(lastName))
+    modifiers <- c(modifiers, paste0('lastName="',lastName,'"'))
+  }
+  if(!is.null(middleName)){
+    stopifnot(is.character(middleName))
+    modifiers <- c(modifiers, paste0('middleName="',middleName,'"'))
+  }
+  if(!is.null(nationality)){
+    stopifnot(is.character(nationality))
+    modifiers <- c(modifiers, paste0('lastName="',nationality,'"'))
+  }
+  if(!is.null(playerID)){
+    stopifnot(is.numeric(playerID))
+    modifiers <- c(modifiers, paste0('playerId=', playerID))
+  }
+  if(!is.null(position)){
+    stopifnot(is.character(position))
+    stopifnot(position %in% c('G','D','F','RW','LW','C','D/F','LW/D','C/RW','LW/RW','C/LW','RW/D','C/D'))
+    modifiers <- c(modifiers, paste0('position="',position,'"'))
+  }
+  return(getRecordAPI(query='player', modifiers = modifiers))
+}
 #
 # searchPlayerName <- function(name, nametype){
 #   return(NA)

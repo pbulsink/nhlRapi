@@ -34,8 +34,11 @@ test_that("Draft Records work", {
 
   q <- getDraftRecords(draftYear = 2016, overallPickNumber = 1, roundNumber = 1, country = 'USA', position = 'C')
   q2 <- getDraftRecords(firstName = "Auston", lastName = "Matthews", height = 74, weight = 216, amateurLeague = 'SWISS', draftTeamID = 10)
+  q3 <- getDraftRecords(playerID = 8479318)
   expect_type(q, 'list')
   expect_type(q2, 'list')
+  expect_type(q3, 'list')
   expect_equal(q, q2)
-
+  expect_equal(q, q3)
+  expect_equal(q2,q3)
 })

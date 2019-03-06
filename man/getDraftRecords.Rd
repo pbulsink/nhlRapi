@@ -7,7 +7,7 @@
 getDraftRecords(firstName = NULL, lastName = NULL, draftYear = NULL,
   overallPickNumber = NULL, weight = NULL, height = NULL,
   position = NULL, roundNumber = NULL, draftTeamID = NULL,
-  amateurLeague = NULL, country = NULL)
+  amateurLeague = NULL, country = NULL, playerID = NULL)
 }
 \arguments{
 \item{firstName}{Optional, drafted player first name}
@@ -31,6 +31,8 @@ getDraftRecords(firstName = NULL, lastName = NULL, draftYear = NULL,
 \item{amateurLeague}{Optional, drafted player previous amateur league. Many NA values in API database}
 
 \item{country}{Optional, drafted player country}
+
+\item{playerID}{Optional, player ID}
 }
 \value{
 API results from the drafts endpoint, filtered using any parameters
