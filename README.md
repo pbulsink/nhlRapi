@@ -47,13 +47,13 @@ The following items are covered by this API:
 ### RECORDS
 
 - [X] Attendance
-- [x] Draft
+- [X] Draft
 - [X] Records
-- [x] Franchise
+- [X] Franchise
 - [x] Player
 - [X] Playoffs
-- [x] Trophy
-- [x] Milestones
+- [X] Trophy
+- [X] Milestones
 - [X] Officials
 
 ### Filtering
