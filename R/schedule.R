@@ -11,40 +11,40 @@
 #'
 #' @return The API output of schedules
 #' @export
-getSchedule <- function(team = NULL, startDate = NULL, 
+getSchedule <- function(team = NULL, startDate = NULL,
   endDate = NULL, scheduleType = NULL) {
   modifier <- NULL
-  
+
   if (!is.null(team)) {
     stopifnot(is.numeric(team))
-    modifier <- c(modifier, paste0("teamId=", 
+    modifier <- c(modifier, paste0("teamId=",
       team))
   }
-  
+
   if (!is.null(scheduleType)) {
     stopifnot(length(scheduleType) == 1)
-    stopifnot(scheduleType %in% c("broadcasts", 
+    stopifnot(scheduleType %in% c("broadcasts",
       "linescore", "ticket"))
-    modifier <- c(modifier, paste0("expand=schedule.", 
+    modifier <- c(modifier, paste0("expand=schedule.",
       scheduleType))
   }
-  
+
   if (!is.null(endDate)) {
     stopifnot(!is.null(startDate))
     startDate <- as.Date(startDate)
     endDate <- as.Date(endDate)
     stopifnot(endDate > startDate)
-    modifier <- c(modifier, paste0("startDate=", 
+    modifier <- c(modifier, paste0("startDate=",
       strftime(startDate, "%Y-%m-%d")))
-    modifier <- c(modifier, paste0("endDate=", 
+    modifier <- c(modifier, paste0("endDate=",
       strftime(endDate, "%Y-%m-%d")))
   } else if (!is.null(startDate)) {
     startDate <- as.Date(startDate)
-    modifier <- c(modifier, paste0("date=", 
+    modifier <- c(modifier, paste0("date=",
       strftime(startDate, "%Y-%m-%d")))
   }
-  
+
   query <- "schedule"
-  
-  return(getAPI(query = query, modifiers = modifier))
+
+  return(getStatAPI(query = query, modifiers = modifier))
 }

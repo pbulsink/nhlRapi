@@ -11,10 +11,18 @@ getAward <- function(award = NULL) {
     # progressing
     stopifnot(length(award) == 1)
     stopifnot(is.numeric(award))
-    
+
     query <- querybuilder("awards", award)
   } else {
     query <- "awards"
   }
-  return(getAPI(query = query))
+  return(getStatAPI(query = query))
+}
+
+#' Get Trophys
+#'
+#' @return trophy information from records api
+#' @export
+getTrophy<-function(){
+  return(getRecordAPI(query='trophy'))
 }

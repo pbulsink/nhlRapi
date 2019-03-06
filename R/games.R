@@ -11,10 +11,10 @@ getGameBoxscore <- function(game) {
   stopifnot(length(game) == 1)
   stopifnot(is.numeric(game))
   stopifnot(validateGameCode(game))
-  
+
   query <- querybuilder("game", game, "boxscore")
-  
-  return(getAPI(query = query))
+
+  return(getStatAPI(query = query))
 }
 
 #' Get Game Linescore
@@ -30,10 +30,10 @@ getGameLinescore <- function(game) {
   stopifnot(length(game) == 1)
   stopifnot(is.numeric(game))
   stopifnot(validateGameCode(game))
-  
+
   query <- querybuilder("game", game, "linescore")
-  
-  return(getAPI(query = query))
+
+  return(getStatAPI(query = query))
 }
 
 #' Get Game Feed
@@ -50,16 +50,16 @@ getGameFeed <- function(game, from = NULL) {
   stopifnot(length(game) == 1)
   stopifnot(is.numeric(game))
   stopifnot(validateGameCode(game))
-  
+
   if (!is.null(from)) {
     stopifnot(validateFromTimeCode(from))
     modifiers <- paste0("startTimecode=", from)
   } else {
     modifiers <- NULL
   }
-  
-  query <- querybuilder("game", game, "feed", 
+
+  query <- querybuilder("game", game, "feed",
     "live")
-  
-  return(getAPI(query = query, modifiers = modifiers))
+
+  return(getStatAPI(query = query, modifiers = modifiers))
 }
