@@ -7,11 +7,20 @@
 getGameBoxscore(game)
 }
 \arguments{
-\item{game}{Required, get specific game boxscore.}
+\item{game}{Required, get specific game boxscore. Gamecode in format YYYYTTNNNN, with:
+\describe{
+  \item{\code{YYYY}}{Season of game, 2017 for 20172018 season}
+  \item{\code{TT}}{Type of game: Either 02 for regular season, or 03 for playoffs}
+  \item{\code{NNNN}}{Game number: from 0001 to 1230 (prior to 2017) or 0001 to 1271 (2017 and onwards)}
+}}
 }
 \value{
 The boxscore API output of games
 }
 \description{
-Get a NHL game boxscore. Includes goals, shots, PIMs, blocked, takeaways, giveaways and hits
+Get a NHL game boxscore. Includes goals, shots, PIMs, blocked, takeaways, giveaways and hits.
+}
+\examples{
+#Show boxscore from the first game of 2015-2016
+boxscore <- getGameBoxscore(2015020001)
 }
