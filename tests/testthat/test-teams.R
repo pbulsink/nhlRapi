@@ -6,13 +6,16 @@ test_that("Team pulls team", {
   expect_type(q, "list")
   expect_equal(names(q), c("copyright", "teams"))
 
+  q<-getTeam(1)
+  expect_equal(q$teams$name, "New Jersey Devils")
+
   q <- getTeam(1, info = "team.schedule.previous")
   expect_true("previousGameSchedule" %in% names(q$teams))
 
-  q <- getTeam(1, "team.roster")
+  q <- getTeam(1, info = "team.roster")
   expect_true("roster" %in% names(q$teams))
 
-  q <- getTeam(1, "team.stats")
+  q <- getTeam(1, info = "team.stats")
   expect_equal(names(q), c("copyright", "stats"))
 
   # Expect Failures
