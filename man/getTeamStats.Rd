@@ -17,3 +17,10 @@ Team stats from the API
 \description{
 Returns the team stats, both single season numbers and league ranking. Convenience wrapper around \code{\link{getTeam}(team = team, modifier = team.stats, season = season)}.
 }
+\examples{
+#See stats from the Philadelphia Flyers (ID = 4)
+flyers <- getTeamStats(4)
+
+#See their stats from 20112012
+flyers_past <- getTeamStats(4, season = 20112012)
+}

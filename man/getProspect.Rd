@@ -17,5 +17,5 @@ Get the NHL draft prospects for the current year, or get one single prospect
 }
 \examples{
 #See prospects
-getProspect()
+prospects <- getProspect()
 }

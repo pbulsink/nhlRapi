@@ -15,13 +15,22 @@ getSchedule(team = NULL, startDate = NULL, endDate = NULL,
 \item{endDate}{If a date range is requested, the end date. For a single date, this may be left out.}
 
 \item{scheduleType}{additional schedule information may be requested:
-- broadcasts - show a list of broadcasts for the game(s)
-- linescore - show a linescore for completed game(s)
-- ticket - show different ticket purchase options for upcoming game(s)}
+\describe{
+  \item{\code{broadcasts}}{show a list of broadcasts for the game(s)}
+  \item{\code{linescore}}{show a linescore for completed game(s)}
+  \item{\code{ticket}}{show different ticket purchase options for upcoming game(s)}
+}}
 }
 \value{
 The API output of schedules
 }
 \description{
 Get the NHL schedule for a team, a date (range) or with additional information.
+}
+\examples{
+#see the schedule:
+schedule<-getSchedule()
+
+#see the schedule linescores:
+linescores<-getSchedule(scheduleType = 'linescore')
 }

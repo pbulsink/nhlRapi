@@ -15,3 +15,7 @@ The API output of divisions
 \description{
 Get the NHL divisions, including historical divisions. Or, get one single division
 }
+\examples{
+#See information on NHL Divisions:
+divisions<-getDivision()
+}

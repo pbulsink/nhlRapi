@@ -24,5 +24,6 @@ Get Franchise Head to Head playoff record
 }
 \examples{
 #See the head to head playoff results between the two New York teams
-getPlayoffRecordVsFranchise(franchiseName = "New York Islanders", opponentName = "New York Rangers")
+h2h_playoffs <- getPlayoffRecordVsFranchise(franchiseName = "New York Islanders",
+                                            opponentName = "New York Rangers")
 }

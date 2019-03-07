@@ -4,14 +4,17 @@
 \alias{getRecordsList}
 \title{Get Records List}
 \usage{
-getRecordsList()
+getRecordsList(recordKey = NULL)
+}
+\arguments{
+\item{recordKey}{optional, filter result by record key}
 }
 \value{
 a list of all records maintained by the NHL. The return is the API URL to call for the current record result.
 }
 \description{
-Get Records List
+The NHL maintains a sizeable list of records. Mosts, longests, fewests, youngests, etc.
 }
 \examples{
-records<-getRecordsList()
+records <- getRecordsList(recordKey = "most-shots-one-game")
 }

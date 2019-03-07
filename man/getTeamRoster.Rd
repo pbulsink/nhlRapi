@@ -17,3 +17,10 @@ the API output of teams' rosters
 \description{
 Returns the team roster, configurable for season. Convenience wrapper around \code{\link{getTeam}(team = team, modifier = team.roster, season = season)}.
 }
+\examples{
+#See the Carolina Hurricane's roster (ID = 12)
+canes <- getTeamRoster(12)
+
+#Get their roster a few years ago
+canes_past <- getTeamRoster(12, season = 20152016)
+}

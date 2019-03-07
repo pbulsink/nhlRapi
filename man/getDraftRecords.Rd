@@ -42,5 +42,5 @@ Pull up information on specific draft picks. Many filters to chose from.
 }
 \examples{
 #See all goaltenders drafted in 2006:
-getDraftRecords(position="G", draftYear = 2006)
+draft_record <- getDraftRecords(position="G", draftYear = 2006)
 }

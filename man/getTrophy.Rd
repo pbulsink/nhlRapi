@@ -4,11 +4,21 @@
 \alias{getTrophy}
 \title{Get Trophys}
 \usage{
-getTrophy()
+getTrophy(name = NULL)
+}
+\arguments{
+\item{name}{Optional, trophy name}
 }
 \value{
-trophy information from records api
+trophy information from records api. Has ability to search by name
 }
 \description{
 Get Trophys
+}
+\examples{
+#See list of trophys
+trophies <- getTrophy()
+
+#See only the Vezina trophy
+vezina <- getTrophy('Vezina Trophy')
 }

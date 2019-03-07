@@ -17,5 +17,5 @@ Get round by round data for draft year(s).
 }
 \examples{
 #Get draft data for 2002 entry draft
-getDraft(2002)
+draft <- getDraft(2002)
 }

@@ -19,8 +19,8 @@ Retrieves franchise records (best/worst seasons, most goals in a game, etc).
 }
 \examples{
 #See the records for franchise 23:
-records<-getFranchiseRecords(franchiseID = 23)
+records <- getFranchiseRecords(franchiseID = 23)
 
 #Or, knowing that franchise 23 is New Jersey Devils:
-records<-getFranchiseRecords(franchiseName = "New Jersey Devils")
+records <- getFranchiseRecords(franchiseName = "New Jersey Devils")
 }

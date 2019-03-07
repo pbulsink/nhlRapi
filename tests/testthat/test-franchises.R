@@ -28,13 +28,13 @@ test_that("franchise scrapings work", {
   expect_type(q2, 'list')
   expect_equal(q, q2)
 
-  q<-getFranchiseSeasonResults(franchiseID = 37)
+  q<-getFranchiseSeasonResults(franchiseID = 37, season = 20172018)
   expect_type(q, 'list')
-  q2<-getFranchiseSeasonResults(franchiseName = 'Minnesota Wild')
+  q2<-getFranchiseSeasonResults(franchiseName = 'Minnesota Wild', season = 20172018)
   expect_type(q2, 'list')
   #different orders supplied, reorganizing q & q2
   expect_equivalent(q$data[order(q$data$seasonId, q$data$gameTypeId),], q2$data[order(q2$data$seasonId, q2$data$gameTypeId),])
-  q2<-getFranchiseSeasonResults(gameType = 2, franchiseID = 37)
+  q2<-getFranchiseSeasonResults(gameType = 2, franchiseID = 37, season = 20172018)
 
   expect_equivalent(q2$data, q$data[q$data$gameTypeId == 2,])
 

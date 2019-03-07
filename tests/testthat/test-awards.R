@@ -21,4 +21,8 @@ test_that("Trophys scrape", {
 
   expect_type(q, 'list')
   expect_true('stanley-cup' %in% q$data$shortName)
+
+  q <- getTrophy('Vezina Trophy')
+  expect_type(q, 'list')
+  expect_equal(q$data$shortName, 'vezina')
 })

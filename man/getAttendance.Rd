@@ -17,8 +17,8 @@ Returns league-wide season attendance totals (no game-by-game or team-by-team br
 }
 \examples{
 #See all attendance records
-getAttendance()
+attendance <- getAttendance()
 
 #Only see attendance from a certain year
-getAttendance(20152016)
+attendance <- getAttendance(20152016)
 }

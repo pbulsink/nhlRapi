@@ -9,10 +9,10 @@
 #'
 #' @examples
 #' #See all attendance records
-#' getAttendance()
+#' attendance <- getAttendance()
 #'
 #' #Only see attendance from a certain year
-#' getAttendance(20152016)
+#' attendance <- getAttendance(20152016)
 getAttendance<-function(season = NULL){
   if(!is.null(season)){
     stopifnot(is.numeric(season))

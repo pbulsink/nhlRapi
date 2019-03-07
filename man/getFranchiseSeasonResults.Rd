@@ -5,7 +5,7 @@
 \title{Get Franchise Season Results Stats}
 \usage{
 getFranchiseSeasonResults(franchiseID = NULL, franchiseName = NULL,
-  gameType = NULL)
+  gameType = NULL, season = NULL)
 }
 \arguments{
 \item{franchiseID}{Optional franchise ID to filter results.}
@@ -13,14 +13,16 @@ getFranchiseSeasonResults(franchiseID = NULL, franchiseName = NULL,
 \item{franchiseName}{Optional franchise name to filter results.}
 
 \item{gameType}{Optional, limit results to regular season (2) or playoffs (3). Accepts numerical input only}
+
+\item{season}{Optional, limit results to a particular season}
 }
 \value{
 Season record stats for every franchise.
 }
 \description{
-Get Franchise Season Results Stats
+Franchise season results
 }
 \examples{
 #See the St. Louis Blues' regular season results
-getFranchiseSeasonResults(franchiseName = 'St. Louis Blues', gameType = 2)
+results <- getFranchiseSeasonResults(franchiseName = 'St. Louis Blues', gameType = 2)
 }

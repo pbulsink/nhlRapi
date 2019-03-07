@@ -22,3 +22,10 @@ The API output of standings
 \description{
 Get the NHL standings, including historical standings. Or, get one single standing
 }
+\examples{
+# get standings
+standings <- getStandings()
+
+#Get standings from 20182009
+standings <- getStandings(season = 20082009)
+}

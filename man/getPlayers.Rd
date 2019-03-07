@@ -15,3 +15,7 @@ The API output of player
 \description{
 Get NHL players basic info & stats, including historical players.
 }
+\examples{
+#See info on Sidney Crosby (ID = 8471675)
+crosby <- getPlayers(8471675)
+}

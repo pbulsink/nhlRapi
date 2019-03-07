@@ -24,8 +24,8 @@ Gets team total stats (total goals scored, etc.). Results are split by 'gameType
 }
 \examples{
 #Get franchise totals for the Colorado Avalanche
-avs_totals<-getFranchiseTeamTotal(franchiseName = "Colorado Avalanche")
+avs_totals <- getFranchiseTeamTotal(franchiseName = "Colorado Avalanche")
 
 #Or, see all of the franchise's totals (franchise = 27), including Quebec Nordiques
-avs_nordiques_totals<-getFranchiseTeamTotal(franchiseID = 27)
+avs_nordiques_totals <- getFranchiseTeamTotal(franchiseID = 27)
 }

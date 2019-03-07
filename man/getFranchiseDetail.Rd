@@ -19,5 +19,5 @@ Get Franchise Detailed Information
 }
 \examples{
 #See some detailed information on the Pittsburgh Penguins
-getFranchiseDetail(teamID = 5)
+details <- getFranchiseDetail(teamID = 5)
 }

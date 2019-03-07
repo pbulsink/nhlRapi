@@ -1,10 +1,15 @@
 #' Get Conference
 #'
 #' @description Get the NHL conferences, including historical conferences. Or, get one single conference
+#'
 #' @param conference Optional, get specific conference information. Eastern = 6, Western = 5, World cup of Hockey = 7
 #'
 #' @return The API output of conferences
 #' @export
+#'
+#' @examples
+#' #See information on the NHL conferences:
+#' conferences<-getConference()
 getConference <- function(conference = NULL) {
   if (!is.null(conference)) {
     # checks to prevent bad API calls from

@@ -17,8 +17,8 @@ Get Officials
 }
 \examples{
 #Get all past officials
-officials<-getOfficials()
+officials <- getOfficials()
 
 #To pull only active officials:
-officials_active<-getOfficials(active = TRUE)
+officials_active <- getOfficials(active = TRUE)
 }

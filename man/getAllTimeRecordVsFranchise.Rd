@@ -24,5 +24,6 @@ Get Franchise Head to Head record
 }
 \examples{
 #See the historical head to head for Philadelphia Flyers and Boston Bruins
-getAllTimeRecordVsFranchise(franchiseName = "Philadelphia Flyers", opponentName = "Boston Bruins")
+h2h <- getAllTimeRecordVsFranchise(franchiseName = "Philadelphia Flyers",
+                                   opponentName = "Boston Bruins")
 }

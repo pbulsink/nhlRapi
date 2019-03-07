@@ -6,7 +6,7 @@ test_that("Team pulls team", {
   expect_type(q, "list")
   expect_equal(names(q), c("copyright", "teams"))
 
-  q <- getTeam(1, modifier = "team.schedule.previous")
+  q <- getTeam(1, info = "team.schedule.previous")
   expect_true("previousGameSchedule" %in% names(q$teams))
 
   q <- getTeam(1, "team.roster")
@@ -16,12 +16,12 @@ test_that("Team pulls team", {
   expect_equal(names(q), c("copyright", "stats"))
 
   # Expect Failures
-  expect_error(getTeam(team = 1, modifier = "bad"))
+  expect_error(getTeam(team = 1, info = "bad"))
   expect_error(getTeam(c(1, 2)))
-  expect_error(getTeam(team = 1, modifier = "teamRoster"))
-  expect_error(getTeam(team = 1, modifier = c("bob",
+  expect_error(getTeam(team = 1, info = "teamRoster"))
+  expect_error(getTeam(team = 1, info = c("bob",
     "bad")))
-  expect_error(getTeam(modifier = "bad"))
+  expect_error(getTeam(info = "bad"))
   expect_error(getTeam(season = 20172018))
 
 })
@@ -54,7 +54,7 @@ test_that("getTeamStats", {
 
   # Expect Failures
   expect_error(getTeamStats())
-  expect_error(getTeamStat(steam = c(1, 2)))
+  expect_error(getTeamStats(team = c(1, 2)))
   expect_error(getTeamStats(team = 1, season = c(20172018,
     20182019)))
   expect_error(getTeamStats(team = 1, season = "now"))

@@ -8,8 +8,14 @@
 #'
 #' @return The API output of standings
 #' @export
-getStandings <- function(standingsType = NULL,
-  date = NULL, season = NULL, expand = FALSE) {
+#'
+#' @examples
+#' # get standings
+#' standings <- getStandings()
+#'
+#' #Get standings from 20182009
+#' standings <- getStandings(season = 20082009)
+getStandings <- function(standingsType = NULL, date = NULL, season = NULL, expand = FALSE) {
   if (!is.null(standingsType)) {
     # checks to prevent bad API calls from
     # progressing
@@ -55,6 +61,10 @@ getStandings <- function(standingsType = NULL,
 #'
 #' @return a list of standings types to call with \code{\link{getStandings}()}
 #' @export
+#'
+#' @examples
+#' #Show the accepted standings types
+#' getStandingsTypes()
 getStandingsTypes <- function() {
   return(unname(unlist(getStatAPI("standingsTypes"))))
 }

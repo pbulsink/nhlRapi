@@ -12,3 +12,7 @@ a list of standings types to call with \code{\link{getStandings}()}
 \description{
 Only certain standings display types are accepted. This returns the full valid list.
 }
+\examples{
+#Show the accepted standings types
+getStandingsTypes()
+}

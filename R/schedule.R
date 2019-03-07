@@ -5,14 +5,22 @@
 #' @param startDate A single date or a date range may be entered, optional, must be coercable with as.Date()
 #' @param endDate If a date range is requested, the end date. For a single date, this may be left out.
 #' @param scheduleType additional schedule information may be requested:
-#'  - broadcasts - show a list of broadcasts for the game(s)
-#'  - linescore - show a linescore for completed game(s)
-#'  - ticket - show different ticket purchase options for upcoming game(s)
+#' \describe{
+#'   \item{\code{broadcasts}}{show a list of broadcasts for the game(s)}
+#'   \item{\code{linescore}}{show a linescore for completed game(s)}
+#'   \item{\code{ticket}}{show different ticket purchase options for upcoming game(s)}
+#' }
 #'
 #' @return The API output of schedules
 #' @export
-getSchedule <- function(team = NULL, startDate = NULL,
-  endDate = NULL, scheduleType = NULL) {
+#'
+#' @examples
+#' #see the schedule:
+#' schedule<-getSchedule()
+#'
+#' #see the schedule linescores:
+#' linescores<-getSchedule(scheduleType = 'linescore')
+getSchedule <- function(team = NULL, startDate = NULL, endDate = NULL, scheduleType = NULL) {
   modifier <- NULL
 
   if (!is.null(team)) {

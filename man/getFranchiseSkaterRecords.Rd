@@ -26,5 +26,5 @@ Get Franchise Season Record Stats
 }
 \examples{
 #See the Detroit Red Wings season records:
-getFranchiseSkaterRecords(franchiseName = 'Detroit Red Wings')
+skater <- getFranchiseSkaterRecords(franchiseName = 'Detroit Red Wings')
 }

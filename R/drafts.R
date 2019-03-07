@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' #Get draft data for 2002 entry draft
-#' getDraft(2002)
+#' draft <- getDraft(2002)
 getDraft <- function(year = NULL) {
   if (!is.null(year)) {
     # checks to prevent bad API calls from
@@ -37,7 +37,7 @@ getDraft <- function(year = NULL) {
 #'
 #' @examples
 #' #See prospects
-#' getProspect()
+#' prospects <- getProspect()
 getProspect <- function(prospect = NULL) {
   if (!is.null(prospect)) {
     # checks to prevent bad API calls from
@@ -75,7 +75,7 @@ getProspect <- function(prospect = NULL) {
 #'
 #' @examples
 #' #See all goaltenders drafted in 2006:
-#' getDraftRecords(position="G", draftYear = 2006)
+#' draft_record <- getDraftRecords(position="G", draftYear = 2006)
 getDraftRecords<-function(firstName = NULL, lastName = NULL, draftYear = NULL, overallPickNumber = NULL, weight = NULL, height = NULL, position = NULL, roundNumber = NULL, draftTeamID = NULL, amateurLeague = NULL, country = NULL, playerID = NULL){
   modifiers<-NULL
   if(!is.null(firstName)){
