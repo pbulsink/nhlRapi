@@ -1,12 +1,17 @@
 #' Get Attendance Records
 #'
-#' @param season Optional, to pull attendance from given season. Format: 20172018
+#' @description Returns league-wide season attendance totals (no game-by-game or team-by-team breakdown available)
+#'
+#' @param season Optional, to filter attendance to a given season. Format: 20172018
 #'
 #' @return season attendance records from the API
 #' @export
 #'
 #' @examples
+#' #See all attendance records
 #' getAttendance()
+#'
+#' #Only see attendance from a certain year
 #' getAttendance(20152016)
 getAttendance<-function(season = NULL){
   if(!is.null(season)){

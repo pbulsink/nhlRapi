@@ -98,6 +98,10 @@ getFranchiseRecords<-function(franchiseID = NULL, franchiseName = NULL){
 #'
 #' @return Season record stats for every franchise.
 #' @export
+#'
+#' @examples
+#' #See the St. Louis Blues' regular season results
+#' getFranchiseSeasonResults(franchiseName = 'St. Louis Blues', gameType = 2)
 getFranchiseSeasonResults<-function(franchiseID = NULL, franchiseName = NULL, gameType=NULL){
   modifiers<-NULL
   if(!is.null(franchiseName)){
@@ -119,6 +123,10 @@ getFranchiseSeasonResults<-function(franchiseID = NULL, franchiseName = NULL, ga
 #'
 #' @return detailed information for evey franchise, including captains, coaches, GMs, retired numbers, etc.
 #' @export
+#'
+#' @examples
+#' #See some detailed information on the Pittsburgh Penguins
+#' getFranchiseDetail(teamID = 5)
 getFranchiseDetail<-function(teamID = NULL, franchiseID = NULL){
   modifiers <- NULL
   if(!is.null(teamID)){
@@ -185,6 +193,10 @@ getFranchiseGoalieRecords<-function(franchiseID = NULL, franchiseName = NULL, fi
 #'
 #' @return Skater record stats for every franchise.
 #' @export
+#'
+#' @examples
+#' #See the Detroit Red Wings season records:
+#' getFranchiseSkaterRecords(franchiseName = 'Detroit Red Wings')
 getFranchiseSkaterRecords<-function(franchiseID = NULL, franchiseName = NULL, firstName = NULL, lastName = NULL, active = FALSE){
   stopifnot(is.logical(active))
   modifiers<-NULL
@@ -216,6 +228,10 @@ getFranchiseSkaterRecords<-function(franchiseID = NULL, franchiseName = NULL, fi
 #'
 #' @return Head to head records for every franchise.
 #' @export
+#'
+#' @examples
+#' #See the historical head to head for Philadelphia Flyers and Boston Bruins
+#' getAllTimeRecordVsFranchise(franchiseName = "Philadelphia Flyers", opponentName = "Boston Bruins")
 getAllTimeRecordVsFranchise<-function(franchiseID = NULL, franchiseName = NULL, opponentName = NULL, opponentID = NULL){
   modifiers<-NULL
   if(!is.null(franchiseName)){
@@ -247,6 +263,10 @@ getAllTimeRecordVsFranchise<-function(franchiseID = NULL, franchiseName = NULL, 
 #'
 #' @return Head to head records for every franchise' playoff games.
 #' @export
+#'
+#' @examples
+#' #See the head to head playoff results between the two New York teams
+#' getPlayoffRecordVsFranchise(franchiseName = "New York Islanders", opponentName = "New York Rangers")
 getPlayoffRecordVsFranchise<-function(franchiseID = NULL, franchiseName = NULL, opponentName = NULL, opponentID = NULL){
   modifiers<-NULL
   if(!is.null(franchiseName)){

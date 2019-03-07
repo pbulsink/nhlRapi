@@ -13,5 +13,9 @@ getDraft(year = NULL)
 The API output of draft
 }
 \description{
-Get round by round data for draft years.
+Get round by round data for draft year(s).
+}
+\examples{
+#Get draft data for 2002 entry draft
+getDraft(2002)
 }

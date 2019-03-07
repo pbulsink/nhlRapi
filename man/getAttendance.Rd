@@ -7,15 +7,18 @@
 getAttendance(season = NULL)
 }
 \arguments{
-\item{season}{Optional, to pull attendance from given season. Format: 20172018}
+\item{season}{Optional, to filter attendance to a given season. Format: 20172018}
 }
 \value{
 season attendance records from the API
 }
 \description{
-Get Attendance Records
+Returns league-wide season attendance totals (no game-by-game or team-by-team breakdown available)
 }
 \examples{
+#See all attendance records
 getAttendance()
+
+#Only see attendance from a certain year
 getAttendance(20152016)
 }

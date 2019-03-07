@@ -22,3 +22,7 @@ Head to head records for every franchise' playoff games.
 \description{
 Get Franchise Head to Head playoff record
 }
+\examples{
+#See the head to head playoff results between the two New York teams
+getPlayoffRecordVsFranchise(franchiseName = "New York Islanders", opponentName = "New York Rangers")
+}

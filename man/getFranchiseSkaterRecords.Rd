@@ -24,3 +24,7 @@ Skater record stats for every franchise.
 \description{
 Get Franchise Season Record Stats
 }
+\examples{
+#See the Detroit Red Wings season records:
+getFranchiseSkaterRecords(franchiseName = 'Detroit Red Wings')
+}

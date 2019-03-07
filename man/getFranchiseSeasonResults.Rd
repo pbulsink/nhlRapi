@@ -20,3 +20,7 @@ Season record stats for every franchise.
 \description{
 Get Franchise Season Results Stats
 }
+\examples{
+#See the St. Louis Blues' regular season results
+getFranchiseSeasonResults(franchiseName = 'St. Louis Blues', gameType = 2)
+}

@@ -22,3 +22,7 @@ Head to head records for every franchise.
 \description{
 Get Franchise Head to Head record
 }
+\examples{
+#See the historical head to head for Philadelphia Flyers and Boston Bruins
+getAllTimeRecordVsFranchise(franchiseName = "Philadelphia Flyers", opponentName = "Boston Bruins")
+}
