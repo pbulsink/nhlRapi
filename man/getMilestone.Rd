@@ -8,15 +8,21 @@ getMilestone(milestone)
 }
 \arguments{
 \item{milestone}{Required, one of:
-- 1000-point-career
-- 500-goal-career
-- 100-point-season
-- 50-goal-season
-- 5-goal-game}
+\itemize{
+  \item \code{1000-point-career}
+  \item \code{500-goal-career}
+  \item \code{100-point-season}
+  \item \code{50-goal-season}
+  \item \code{5-goal-game}
+}}
 }
 \value{
-milestones from the API
+milestones from the API of a requested type
 }
 \description{
-Get Milestones Records
+The NHL tracks a few milestones of public interest. This allows calling up the milestones achieved by plyaers. See the milestone parameter for milestones tracked.
+}
+\examples{
+#see all 5 goal games:
+five_goal_games <- getMilestone('5-goal-game')
 }

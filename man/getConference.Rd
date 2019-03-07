@@ -15,3 +15,7 @@ The API output of conferences
 \description{
 Get the NHL conferences, including historical conferences. Or, get one single conference
 }
+\examples{
+#See information on the NHL conferences:
+conferences<-getConference()
+}

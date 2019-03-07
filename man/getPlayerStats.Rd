@@ -19,3 +19,10 @@ The API output of player
 \description{
 get specific stats for a provided player
 }
+\examples{
+#See Sidney Crosby's stats
+crosby_stats <- getPlayerStats(player = 8471675)
+
+#Or, see his stats broken up by month for 20162017
+crosby_month <- getPlayerStats(player = 8471675, stat = 'byMonth', season = 20162017)
+}

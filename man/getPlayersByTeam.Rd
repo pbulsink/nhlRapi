@@ -7,11 +7,15 @@
 getPlayersByTeam(team)
 }
 \arguments{
-\item{team}{Team id}
+\item{team}{required, team id}
 }
 \value{
 the players (from records api) on the team
 }
 \description{
-Get Players per team
+This uses a different API endpoint from the other team gets. Pulls players on a team currently.
+}
+\examples{
+#See the active players on Edmonton Oilers (ID = 22)
+players <- getPlayersByTeam(22)
 }

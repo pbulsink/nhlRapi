@@ -18,9 +18,9 @@ a list of all franchises in the NHL.
 The API has separate tables for Franchises and Teams. This allowed for teams that moved locations to have the same franchise, or locations with multiple teams to have different franchise histories (Winnipeg). This call returns franchises, which has a corresponding id to teams (see \code{output$data$mostRecentTeamID}).
 }
 \examples{
-franchises<-getFranchiseList()
+franchises <- getFranchiseList()
 
 #or, get specific franchise info:
-franchise<-getFranchiseList(teamName = "Golden Knights")
-franchise<-getFranchiseList(teamPlace = "Vegas")
+franchise <- getFranchiseList(teamName = "Golden Knights")
+franchise <- getFranchiseList(teamPlace = "Vegas")
 }

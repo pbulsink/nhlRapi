@@ -28,5 +28,5 @@ Returns lots of metadata on players. Search by ID, first, middle & last name, po
 }
 \examples{
 #Pull up Dave Andreychuk's information
-getPlayerRecord(firstName = 'Dave', lastName = 'Andreychuk')
+andreychuck <- getPlayerRecord(firstName = 'Dave', lastName = 'Andreychuk')
 }

@@ -28,20 +28,20 @@ The following items are covered by this API:
 
 ### STATS
 
-- [x] Teams
-- [x] Divisions
-- [x] Conferences
-- [x] People
+- [X] Teams
+- [X] Divisions
+- [X] Conferences
+- [X] People
 - [x] Game-IDs
-- [x] Schedule
-- [x] Standings
-- [x] ~~Standings Types~~
-- [x] ~~Stats Types~~
-- [x] Team Stats
-- [x] Draft
-- [x] Prospects
-- [x] Awards
-- [x] Venues (new)
+- [X] Schedule
+- [X] Standings
+- [X] ~~Standings Types~~
+- [X] ~~Stats Types~~
+- [X] Team Stats
+- [X] Draft
+- [X] Prospects
+- [X] Awards
+- [X] Venues (new)
 
 *Stats Types and Standings Types are modifiers for People Stats and Standings, respectively*
 
@@ -60,12 +60,12 @@ The following items are covered by this API:
 ### Filtering
 Some functions contain introductory filter options. Further filtering can be done once data is retrieved by the API. For example, the API can get all attendance records `getAttendance()` or a specific season `getAttendance(season = 20152016)`. While the web API allows for other field filtering (e.g. a call for `playoffAttendance>1000000`), the `R` api functions do not have all of these built in. 
 
-Instead, use `R` to perform these filters for now:
+Instead, use `R` to perform these filters:
 ```r
 attendance<-getAttendance()
 attendance<-attendance$data[attendance$data$playoffAttendance > 1000000, ]
 ```
 
 ## Copyright
-All data, teams, logos, and information is copyright NHL and its teams, with compliance to the copyright statement recieved from each API call or from `getCopyright()`.
+All data, teams, logos, and information is copyright NHL and its teams, with compliance to the copyright statement recieved from the API call (from `getCopyright()`).
 

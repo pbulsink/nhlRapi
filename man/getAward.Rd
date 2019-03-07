@@ -7,11 +7,18 @@
 getAward(award = NULL)
 }
 \arguments{
-\item{award}{Optional, get specific award information. Notable awards include Stanley Cup = 1, Conn smythe = 7, Vezina = 18.}
+\item{award}{Optional, award ID to get specific award information. Notable awards include Stanley Cup = 1, Conn smythe = 7, Vezina = 18.}
 }
 \value{
 The API output of awards
 }
 \description{
 Get the NHL awards, including historical awards. Or, get one single award
+}
+\examples{
+#See the list of all awards
+awards <- getAward()
+
+#Only get stanley Cup info
+getAward(award = 1)
 }

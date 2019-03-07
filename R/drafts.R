@@ -1,11 +1,15 @@
 #' Get Draft
 #'
-#' @description Get round by round data for draft years.
-#' @param year Optional, get specific draft year information. If not set, returns current year's draft. First draft was 1963, so any year prior will result in error
+#' @description Get round by round data for draft year(s).
 #'
+#' @param year Optional, get specific draft year information. If not set, returns current year's draft. First draft was 1963, so any year prior will result in error
 #'
 #' @return The API output of draft
 #' @export
+#'
+#' @examples
+#' #Get draft data for 2002 entry draft
+#' draft <- getDraft(2002)
 getDraft <- function(year = NULL) {
   if (!is.null(year)) {
     # checks to prevent bad API calls from
@@ -30,6 +34,10 @@ getDraft <- function(year = NULL) {
 #'
 #' @return The API output of prospects
 #' @export
+#'
+#' @examples
+#' #See prospects
+#' prospects <- getProspect()
 getProspect <- function(prospect = NULL) {
   if (!is.null(prospect)) {
     # checks to prevent bad API calls from
@@ -66,8 +74,8 @@ getProspect <- function(prospect = NULL) {
 #' @export
 #'
 #' @examples
-#' #See all G drafted in 2006:
-#' getDraftRecords(position="G", draftYear = 2006)
+#' #See all goaltenders drafted in 2006:
+#' draft_record <- getDraftRecords(position="G", draftYear = 2006)
 getDraftRecords<-function(firstName = NULL, lastName = NULL, draftYear = NULL, overallPickNumber = NULL, weight = NULL, height = NULL, position = NULL, roundNumber = NULL, draftTeamID = NULL, amateurLeague = NULL, country = NULL, playerID = NULL){
   modifiers<-NULL
   if(!is.null(firstName)){

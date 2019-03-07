@@ -19,11 +19,11 @@ Get Playoff Details
 }
 \examples{
 #Get all playoff series in 20172018
-playoffs_1718<-getPlayoffDetails(season = 20172018)
+playoffs_1718 <- getPlayoffDetails(season = 20172018)
 
 #Get all Stanley Cup Finals series:
-playoffs_finals<-getPlayoffDetails(series = 'Stanley Cup Final')
+playoffs_finals <- getPlayoffDetails(series = 'Stanley Cup Final')
 
 #alternativly, with a series code:
-playoffs_finals<-getPlayoffDetails(series = 4)
+playoffs_finals <- getPlayoffDetails(series = 4)
 }

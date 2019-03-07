@@ -5,6 +5,10 @@
 #'
 #' @return The API output of player
 #' @export
+#'
+#' @examples
+#' #See info on Sidney Crosby (ID = 8471675)
+#' crosby <- getPlayers(8471675)
 getPlayers <- function(player = NULL) {
   stopifnot(length(player) == 1)
   stopifnot(is.numeric(player))
@@ -24,8 +28,14 @@ getPlayers <- function(player = NULL) {
 #'
 #' @return The API output of player
 #' @export
-getPlayerStats <- function(player, stat = NULL,
-  season = NULL) {
+#'
+#' @examples
+#' #See Sidney Crosby's stats
+#' crosby_stats <- getPlayerStats(player = 8471675)
+#'
+#' #Or, see his stats broken up by month for 20162017
+#' crosby_month <- getPlayerStats(player = 8471675, stat = 'byMonth', season = 20162017)
+getPlayerStats <- function(player, stat = NULL, season = NULL) {
   stopifnot(length(player) == 1)
   stopifnot(is.numeric(player))
   if (is.null(stat)) {
@@ -68,6 +78,10 @@ getPlayerStats <- function(player, stat = NULL,
 #'
 #' @return a list of player stat types to call with \code{\link{getPlayerStats}()}
 #' @export
+#'
+#' @examples
+#' #See the possible stat types:
+#' getPlayerStatTypes()
 getPlayerStatTypes <- function() {
   return(unname(unlist(getStatAPI("statTypes"))))
 }
@@ -87,7 +101,7 @@ getPlayerStatTypes <- function() {
 #' @export
 #' @examples
 #' #Pull up Dave Andreychuk's information
-#' getPlayerRecord(firstName = 'Dave', lastName = 'Andreychuk')
+#' andreychuck <- getPlayerRecord(firstName = 'Dave', lastName = 'Andreychuk')
 getPlayerRecord<- function(firstName = NULL, lastName = NULL, middleName = NULL, position = NULL, playerID = NULL, nationality = NULL) {
   modifiers <- NULL
   if(!is.null(firstName)){

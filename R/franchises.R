@@ -9,11 +9,11 @@
 #' @export
 #'
 #' @examples
-#' franchises<-getFranchiseList()
+#' franchises <- getFranchiseList()
 #'
 #' #or, get specific franchise info:
-#' franchise<-getFranchiseList(teamName = "Golden Knights")
-#' franchise<-getFranchiseList(teamPlace = "Vegas")
+#' franchise <- getFranchiseList(teamName = "Golden Knights")
+#' franchise <- getFranchiseList(teamPlace = "Vegas")
 getFranchiseList<-function(teamName = NULL, teamPlace = NULL){
   modifiers <- NULL
   if(!is.null(teamName)){
@@ -42,10 +42,10 @@ getFranchiseList<-function(teamName = NULL, teamPlace = NULL){
 #'
 #' @examples
 #' #Get franchise totals for the Colorado Avalanche
-#' avs_totals<-getFranchiseTeamTotal(franchiseName = "Colorado Avalanche")
+#' avs_totals <- getFranchiseTeamTotal(franchiseName = "Colorado Avalanche")
 #'
 #' #Or, see all of the franchise's totals (franchise = 27), including Quebec Nordiques
-#' avs_nordiques_totals<-getFranchiseTeamTotal(franchiseID = 27)
+#' avs_nordiques_totals <- getFranchiseTeamTotal(franchiseID = 27)
 getFranchiseTeamTotal<-function(franchiseID = NULL, franchiseName = NULL, gameType=NULL, active = FALSE){
   modifiers<-NULL
   stopifnot(is.logical(active))
@@ -76,10 +76,10 @@ getFranchiseTeamTotal<-function(franchiseID = NULL, franchiseName = NULL, gameTy
 #'
 #' @examples
 #' #See the records for franchise 23:
-#' records<-getFranchiseRecords(franchiseID = 23)
+#' records <- getFranchiseRecords(franchiseID = 23)
 #'
 #' #Or, knowing that franchise 23 is New Jersey Devils:
-#' records<-getFranchiseRecords(franchiseName = "New Jersey Devils")
+#' records <- getFranchiseRecords(franchiseName = "New Jersey Devils")
 getFranchiseRecords<-function(franchiseID = NULL, franchiseName = NULL){
   modifiers<-NULL
   if(!is.null(franchiseName)){
@@ -92,13 +92,20 @@ getFranchiseRecords<-function(franchiseID = NULL, franchiseName = NULL){
 
 #' Get Franchise Season Results Stats
 #'
+#' @description Franchise season results
+#'
 #' @param franchiseID Optional franchise ID to filter results.
 #' @param franchiseName Optional franchise name to filter results.
 #' @param gameType Optional, limit results to regular season (2) or playoffs (3). Accepts numerical input only
+#' @param season Optional, limit results to a particular season
 #'
 #' @return Season record stats for every franchise.
 #' @export
-getFranchiseSeasonResults<-function(franchiseID = NULL, franchiseName = NULL, gameType=NULL){
+#'
+#' @examples
+#' #See the St. Louis Blues' regular season results
+#' results <- getFranchiseSeasonResults(franchiseName = 'St. Louis Blues', gameType = 2)
+getFranchiseSeasonResults<-function(franchiseID = NULL, franchiseName = NULL, gameType=NULL, season=NULL){
   modifiers<-NULL
   if(!is.null(franchiseName)){
     stopifnot(is.character(franchiseName))
@@ -107,6 +114,11 @@ getFranchiseSeasonResults<-function(franchiseID = NULL, franchiseName = NULL, ga
   if(!is.null(gameType)){
     stopifnot((gameType == 2 | gameType == 3))
     modifiers <- c(modifiers, paste0('gameTypeId=',gameType))
+  }
+  if(!is.null(season)){
+    stopifnot(is.numeric(season))
+    stopifnot(validSeason(season))
+    modifiers <- c(modifiers, paste0('seasonId=', season))
   }
   return(franchiseGeneric(query = 'franchise-season-results', franchise = franchiseID, modifier = modifiers))
 }
@@ -119,6 +131,10 @@ getFranchiseSeasonResults<-function(franchiseID = NULL, franchiseName = NULL, ga
 #'
 #' @return detailed information for evey franchise, including captains, coaches, GMs, retired numbers, etc.
 #' @export
+#'
+#' @examples
+#' #See some detailed information on the Pittsburgh Penguins
+#' details <- getFranchiseDetail(teamID = 5)
 getFranchiseDetail<-function(teamID = NULL, franchiseID = NULL){
   modifiers <- NULL
   if(!is.null(teamID)){
@@ -148,7 +164,7 @@ getFranchiseDetail<-function(teamID = NULL, franchiseID = NULL){
 #'
 #' @examples
 #' #Get active Ottawa Senators Goalies
-#' goalies<-getFranchiseGoalieRecords(franchiseName = "Ottawa Senators", active = TRUE)
+#' goalies <- getFranchiseGoalieRecords(franchiseName = "Ottawa Senators", active = TRUE)
 #'
 #' #Search for a Goalie
 #' lalime<-getFranchiseGoalieRecords(firstName = "Patrick", lastName = "Lalime")
@@ -185,6 +201,10 @@ getFranchiseGoalieRecords<-function(franchiseID = NULL, franchiseName = NULL, fi
 #'
 #' @return Skater record stats for every franchise.
 #' @export
+#'
+#' @examples
+#' #See the Detroit Red Wings season records:
+#' skater <- getFranchiseSkaterRecords(franchiseName = 'Detroit Red Wings')
 getFranchiseSkaterRecords<-function(franchiseID = NULL, franchiseName = NULL, firstName = NULL, lastName = NULL, active = FALSE){
   stopifnot(is.logical(active))
   modifiers<-NULL
@@ -216,6 +236,11 @@ getFranchiseSkaterRecords<-function(franchiseID = NULL, franchiseName = NULL, fi
 #'
 #' @return Head to head records for every franchise.
 #' @export
+#'
+#' @examples
+#' #See the historical head to head for Philadelphia Flyers and Boston Bruins
+#' h2h <- getAllTimeRecordVsFranchise(franchiseName = "Philadelphia Flyers",
+#'                                    opponentName = "Boston Bruins")
 getAllTimeRecordVsFranchise<-function(franchiseID = NULL, franchiseName = NULL, opponentName = NULL, opponentID = NULL){
   modifiers<-NULL
   if(!is.null(franchiseName)){
@@ -247,6 +272,11 @@ getAllTimeRecordVsFranchise<-function(franchiseID = NULL, franchiseName = NULL, 
 #'
 #' @return Head to head records for every franchise' playoff games.
 #' @export
+#'
+#' @examples
+#' #See the head to head playoff results between the two New York teams
+#' h2h_playoffs <- getPlayoffRecordVsFranchise(franchiseName = "New York Islanders",
+#'                                             opponentName = "New York Rangers")
 getPlayoffRecordVsFranchise<-function(franchiseID = NULL, franchiseName = NULL, opponentName = NULL, opponentID = NULL){
   modifiers<-NULL
   if(!is.null(franchiseName)){

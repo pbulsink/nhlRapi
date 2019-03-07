@@ -1,6 +1,6 @@
 Package: nhlRapi
 Title: R Interface to the NHL API
-Version: 0.1
+Version: 0.2.1
 Authors@R: 
     person(given = "Philip",
            family = "Bulsink",

@@ -58,6 +58,8 @@ getRecordAPI <- function(query, modifiers = NULL) {
 baseAPI<-function(call_url, query_wrapper, type){
   ua <- httr::user_agent("http://github.com/pbulsink/nhlRapi")
 
+  call_url<-gsub(' ', '%20', call_url)
+
   response <- httr::GET(call_url, ua)
 
   # Stop if not 200 ((OK)) returned
@@ -104,3 +106,17 @@ getCopyright <- function() {
 #   invisible(x)
 # }
 
+#TODO: fix this bug:
+#getAllTimeRecordVsFranchise(franchiseName = "Philadelphia Flyers")
+#
+#Error in curl::curl_fetch_memory(url, handle = handle) :
+#  LibreSSL SSL_read: SSL_ERROR_SYSCALL, errno 54
+#8. curl::curl_fetch_memory(url, handle = handle)
+#7. request_fetch.write_memory(req$output, req$url, handle)
+#6. request_fetch(req$output, req$url, handle)
+#5. request_perform(req, hu$handle$handle)
+#4. httr::GET(call_url, ua) at nhlRapi.R#63
+#3. baseAPI(call_url, query_wrapper, type = "record") at nhlRapi.R#50
+#2. getRecordAPI(query = "all-time-record-vs-franchise", modifiers = modifiers) at franchises.R#253
+#1. getAllTimeRecordVsFranchise(franchiseName = "Philadelphia Flyers")
+#

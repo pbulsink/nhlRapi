@@ -17,3 +17,7 @@ detailed information for evey franchise, including captains, coaches, GMs, retir
 \description{
 Get Franchise Detailed Information
 }
+\examples{
+#See some detailed information on the Pittsburgh Penguins
+details <- getFranchiseDetail(teamID = 5)
+}

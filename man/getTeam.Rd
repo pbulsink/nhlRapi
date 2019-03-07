@@ -4,15 +4,17 @@
 \alias{getTeam}
 \title{Get Team}
 \usage{
-getTeam(team = NULL, modifier = NULL, season = NULL)
+getTeam(team = NULL, info = NULL, season = NULL)
 }
 \arguments{
 \item{team}{Optional, get specific team information.}
 
-\item{modifier}{Optional, if team is supplied, get specific info about a team. Options are:
-- 'person.names' Basic roster info.
-- 'team.schedule.next' Returns details of the upcoming game for a team
-- 'team.schedule.previous' Same as above but for the last game played}
+\item{info}{Optional, if team is supplied, get specific info about a team. Options are:
+\describe{
+  \item{\code{person.names}}{Basic roster info}
+  \item{\code{team.schedule.next}}{Returns details of the upcomgin game for a team}
+  \item{\code{team.schedule.previous}}{Returns details of a teams' last game}
+}}
 
 \item{season}{Optional, if looking for season specific information on team}
 }
@@ -21,4 +23,11 @@ The API output of teams
 }
 \description{
 Get the NHL teams, including historical teams. Or, get one single team
+}
+\examples{
+#See info on Washing Capitals (ID = 15)
+caps <- getTeam(15)
+
+#See the Capitals' past game
+caps_last <- getTeam(15, info = 'team.schedule.previous')
 }

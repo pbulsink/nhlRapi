@@ -15,3 +15,7 @@ The API output of prospects
 \description{
 Get the NHL draft prospects for the current year, or get one single prospect
 }
+\examples{
+#See prospects
+prospects <- getProspect()
+}

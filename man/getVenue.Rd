@@ -13,5 +13,9 @@ getVenue(venue = NULL)
 The API output of venues
 }
 \description{
-Get the NHL venues, or, get one single venue
+Get the NHL venues, or, get one single venue. This is a very sparse endpoint, with very littel information available for only 16 venues. This may expand in the future.
+}
+\examples{
+#See the league's venues
+venues <- getVenue()
 }
