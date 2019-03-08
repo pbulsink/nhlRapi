@@ -8,7 +8,7 @@ test_that("query queries", {
   expect_match(q$copyright, "NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams.")
 
   p<-capture.output(print(q))
-  expect_true(any(grepl('NHL venues', p)))
+  expect_true(any(grepl('NHL teams', p)))
 })
 
 test_that("copyright works", {
