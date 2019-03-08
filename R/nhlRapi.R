@@ -74,16 +74,22 @@ baseAPI<-function(call_url, query_wrapper, type){
   json_response <- jsonlite::fromJSON(response_content)
 
   if ('copyright' %in% names(json_response)){
-    content<-json_response[[2]]
+    content<-json_response[names(json_response)!='copyright']
+    if(length(content) == 1) {
+      content<-content[[1]]
+    }
     copyright <- json_response$copyright
   } else if ('data' %in% names(json_response)){
     content<-json_response$data
-    copyright <- sprintf("NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. © NHL %s. All Rights Reserved.", strftime(Sys.Date(), format = '%Y'))
+    copyright <- sprintf("NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. © NHL %s. All Rights Reserved.",
+                         strftime(Sys.Date(), format = '%Y'))
   } else {
     content<-json_response
-    copyright <- sprintf("NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. © NHL %s. All Rights Reserved.", strftime(Sys.Date(), format = '%Y'))
+    copyright <- sprintf("NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. © NHL %s. All Rights Reserved.",
+                         strftime(Sys.Date(), format = '%Y'))
   }
-  #Return S3. Need to rewrite tests?
+
+  #Return S3.
   structure(
     list(
       data = content,
