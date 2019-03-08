@@ -73,18 +73,26 @@ baseAPI<-function(call_url, query_wrapper, type){
 
   json_response <- jsonlite::fromJSON(response_content)
 
-  #TODO: return S3. Need to rewrite tests?
-  # structure(
-  #   list(
-  #     content = json_response,
-  #     path = query_wrapper,
-  #     response = resp,
-  #     copywrite = json_response$copyright
-  #   ),
-  #   class = "nhl_api"
-  # )
-
-  return(json_response)
+  if ('copyright' %in% names(json_response)){
+    content<-json_response[[2]]
+    copyright <- json_response$copyright
+  } else if ('data' %in% names(json_response)){
+    content<-json_response$data
+    copyright <- sprintf("NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. © NHL %s. All Rights Reserved.", strftime(Sys.Date(), format = '%Y'))
+  } else {
+    content<-json_response
+    copyright <- sprintf("NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. © NHL %s. All Rights Reserved.", strftime(Sys.Date(), format = '%Y'))
+  }
+  #Return S3. Need to rewrite tests?
+  structure(
+    list(
+      data = content,
+      path = query_wrapper,
+      response = response,
+      copyright = copyright
+    ),
+    class = "nhl_api"
+  )
 }
 
 
@@ -99,12 +107,12 @@ getCopyright <- function() {
   return(response)
 }
 
-#TODO: Overload print when S3 object generated
-# print.nhl_api <- function(x, ...) {
-#   cat("<NHL ", x$path, ">\n", sep = "")
-#   str(x$content)
-#   invisible(x)
-# }
+# Overload print when S3 object generated
+print.nhl_api <- function(x, ...) {
+  cat("<NHL ", x$path, ">\n", sep = "")
+  str(x$content)
+  invisible(x)
+}
 
 #TODO: fix this bug:
 #getAllTimeRecordVsFranchise(franchiseName = "Philadelphia Flyers")
