@@ -3,20 +3,22 @@ context("test-teams")
 test_that("Team pulls team", {
   q <- getTeam()
 
-  expect_type(q, "list")
-  expect_equal(names(q), c("copyright", "teams"))
+  expect_s3_class(q, 'nhl_api')
 
   q<-getTeam(1)
-  expect_equal(q$teams$name, "New Jersey Devils")
+  expect_s3_class(q, 'nhl_api')
+  expect_equal(q$data$name, "New Jersey Devils")
 
   q <- getTeam(1, info = "team.schedule.previous")
-  expect_true("previousGameSchedule" %in% names(q$teams))
+  expect_s3_class(q, 'nhl_api')
+  expect_true("previousGameSchedule" %in% names(q$data))
 
   q <- getTeam(1, info = "team.roster")
-  expect_true("roster" %in% names(q$teams))
+  expect_s3_class(q, 'nhl_api')
+  expect_true("roster" %in% names(q$data))
 
   q <- getTeam(1, info = "team.stats")
-  expect_equal(names(q), c("copyright", "stats"))
+  expect_s3_class(q, 'nhl_api')
 
   # Expect Failures
   expect_error(getTeam(team = 1, info = "bad"))
@@ -32,12 +34,13 @@ test_that("Team pulls team", {
 test_that("getTeamRoster", {
   q <- getTeamRoster(1)
 
-  expect_equal(names(q), c("copyright", "teams"))
-  expect_equal(names(q$teams$roster$roster[[1]]),
+  expect_s3_class(q, 'nhl_api')
+  expect_equal(names(q$data$roster$roster[[1]]),
     c("person", "jerseyNumber", "position"))
 
   q <- getTeamRoster(1, season = 20102011)
-  expect_true("Martin Brodeur" %in% q$teams$roster$roster[[1]]$person$fullName)
+  expect_s3_class(q, 'nhl_api')
+  expect_true("Martin Brodeur" %in% q$data$roster$roster[[1]]$person$fullName)
 
   # Expect Failures
   expect_error(getTeamRoster())
@@ -51,8 +54,8 @@ test_that("getTeamRoster", {
 test_that("getTeamStats", {
   q <- getTeamStats(1, 20172018)
 
-  expect_equal(names(q), c("copyright", "stats"))
-  expect_equal(q$stats$type$displayName, c("statsSingleSeason",
+  expect_s3_class(q, 'nhl_api')
+  expect_equal(q$data$type$displayName, c("statsSingleSeason",
     "regularSeasonStatRankings"))
 
   # Expect Failures
@@ -66,5 +69,5 @@ test_that("getTeamStats", {
 
 test_that("get Team Players", {
   q<-getPlayersByTeam(1)
-  expect_type(q, 'list')
+  expect_s3_class(q, 'nhl_api')
 })

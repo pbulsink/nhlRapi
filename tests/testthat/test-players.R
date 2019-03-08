@@ -3,24 +3,26 @@ context("test-players")
 test_that("Player Scrapes", {
   q <- getPlayers(8475791)
 
-  expect_equal(names(q), c("copyright", "people"))
-  expect_match(q$people$fullName, "Taylor Hall")
+  expect_s3_class(q, 'nhl_api')
+  expect_match(q$data$fullName, "Taylor Hall")
 
   q <- getPlayerStats(8475791)
-  expect_equal(names(q), c("copyright", "people"))
-  expect_match(q$people$fullName, "Taylor Hall")
+  expect_s3_class(q, 'nhl_api')
+  expect_match(q$data$fullName, "Taylor Hall")
 
   q <- getPlayerStats(8475791, stat = "careerRegularSeason")
-  expect_equal(names(q), c("copyright", "stats"))
-  expect_match(as.character(q$stats$type), "careerRegularSeason")
+  expect_s3_class(q, 'nhl_api')
+  expect_match(as.character(q$data$type), "careerRegularSeason")
 
   q <- getPlayerStats(8475791, stat = "statsSingleSeason",
     season = 20162017)
-  expect_equal(q$stats$splits[[1]]$season, "20162017")
+  expect_s3_class(q, 'nhl_api')
+  expect_equal(q$data$splits[[1]]$season, "20162017")
 
   q <- getPlayerStats(8475791, stat = "statsSingleSeason",
     season = 20172018)
-  expect_equal(q$stats$splits[[1]]$season, "20172018")
+  expect_s3_class(q, 'nhl_api')
+  expect_equal(q$data$splits[[1]]$season, "20172018")
 
   # Expected Failures
   expect_error(getPlayers(c(1, 5)))
@@ -43,8 +45,8 @@ test_that("Player Records work", {
   q<-getPlayerRecord(firstName = 'Dave', lastName = 'Andreychuk')
   q2<-getPlayerRecord(middleName = 'John', position = 'L', nationality = 'CAN', playerID = 8445000)
 
-  expect_type(q, 'list')
-  expect_type(q2, 'list')
+  expect_s3_class(q, 'nhl_api')
+  expect_s3_class(q2, 'nhl_api')
 
-  expect_equal(q, q2)
+  expect_equal(q$data, q2$data)
 })
