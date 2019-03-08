@@ -73,6 +73,7 @@ baseAPI<-function(call_url, query_wrapper, type){
 
   json_response <- jsonlite::fromJSON(response_content)
 
+  copyright <- NULL
   if ('copyright' %in% names(json_response)){
     content<-json_response[names(json_response)!='copyright']
     if(length(content) == 1) {
@@ -81,15 +82,17 @@ baseAPI<-function(call_url, query_wrapper, type){
     copyright <- json_response$copyright
   } else if ('data' %in% names(json_response)){
     content<-json_response$data
-    copyright <- sprintf("NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. © NHL %s. All Rights Reserved.",
-                         strftime(Sys.Date(), format = '%Y'))
+
   } else {
     content<-json_response
-    copyright <- sprintf("NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. © NHL %s. All Rights Reserved.",
+  }
+
+  if(is.null(copyright)){
+    copyright <- sprintf("NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. \u00A9 NHL %s. All Rights Reserved.",
                          strftime(Sys.Date(), format = '%Y'))
   }
 
-  #Return S3.
+  #Return S3 object nhl_api.
   structure(
     list(
       data = content,
@@ -116,11 +119,12 @@ getCopyright <- function() {
 # Overload print when S3 object generated
 print.nhl_api <- function(x, ...) {
   cat("<NHL ", x$path, ">\n", sep = "")
-  str(x$content)
+  utils::str(x$content)
   invisible(x)
 }
 
-#TODO: fix this bug:
+#TODO: Handle this bug error:
+#Sometimes happens for this call, but isn't call specific:
 #getAllTimeRecordVsFranchise(franchiseName = "Philadelphia Flyers")
 #
 #Error in curl::curl_fetch_memory(url, handle = handle) :
