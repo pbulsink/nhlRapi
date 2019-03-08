@@ -4,14 +4,12 @@
 \alias{baseAPI}
 \title{Ultimate BASE api call.}
 \usage{
-baseAPI(call_url, query_wrapper, type)
+baseAPI(call_url, query_wrapper)
 }
 \arguments{
 \item{call_url}{the generated url to get}
 
 \item{query_wrapper}{specific query to api endpoint}
-
-\item{type}{stat or record, for S3 generation}
 }
 \value{
 json response

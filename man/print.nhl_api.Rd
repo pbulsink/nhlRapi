@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{nhl_api object}
 
-\item{...}{}
+\item{...}{other print overloads. Unused}
 }
 \description{
 Overload print when S3 object generated

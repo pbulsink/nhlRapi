@@ -20,7 +20,7 @@ getStatAPI <- function(query, modifiers = NULL) {
 
   call_url <- paste0(base_uri, query_wrapper)
 
-  return(baseAPI(call_url, query_wrapper, type = 'stat'))
+  return(baseAPI(call_url, query_wrapper))
 }
 
 #' Base getRecordAPI call
@@ -45,28 +45,42 @@ getRecordAPI <- function(query, modifiers = NULL) {
   }
 
   call_url <- paste0(base_uri, query_wrapper)
-  return(baseAPI(call_url, query_wrapper, type = 'record'))
+  return(baseAPI(call_url, query_wrapper))
 }
 
 #' Ultimate BASE api call.
 #'
 #' @param call_url the generated url to get
 #' @param query_wrapper specific query to api endpoint
-#' @param type stat or record, for S3 generation
 #'
 #' @return json response
-baseAPI<-function(call_url, query_wrapper, type){
+baseAPI<-function(call_url, query_wrapper){
   ua <- httr::user_agent("http://github.com/pbulsink/nhlRapi")
 
   call_url<-gsub(' ', '%20', call_url)
 
   response <- httr::GET(call_url, ua)
 
-  # Stop if not 200 ((OK)) returned
-  httr::stop_for_status(response)
+  # Warn if not 200 ((OK)) returned
+  httr::warn_for_status(response)
 
   # Stops if not json returned.
-  stopifnot(httr::http_type(response) == "application/json")
+  #stopifnot(httr::http_type(response) == "application/json")
+  if(httr::http_type(response) != "application/json" | httr::status_code(response) >= 300) {
+    resp<-structure(
+      list(
+        data = paste0('Status: ', httr::status_code(response),
+                      "\nURL: ", call_url,
+                      "\nHTTP_Type: ", httr::http_type(response)),
+        path = query_wrapper,
+        error = TRUE,
+        response = response
+      ),
+      class = "nhl_api"
+    )
+    message('API did not return JSON as expected or suffered an error. Print output for more information')
+    return(resp)
+  }
 
   response_content <- rawToChar(httr::content(response,
                                               "raw"))
@@ -119,7 +133,7 @@ getCopyright <- function() {
 #' Overload print when S3 object generated
 #'
 #' @param x nhl_api object
-#' @param ...
+#' @param ... other print overloads. Unused
 #'
 #' @export
 print.nhl_api <- function(x, ...) {
