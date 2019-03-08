@@ -116,10 +116,15 @@ getCopyright <- function() {
   return(response)
 }
 
-# Overload print when S3 object generated
+#' Overload print when S3 object generated
+#'
+#' @param x nhl_api object
+#' @param ...
+#'
+#' @export
 print.nhl_api <- function(x, ...) {
   cat("<NHL ", x$path, ">\n", sep = "")
-  utils::str(x$content)
+  utils::str(x$data)
   invisible(x)
 }
 
