@@ -59,7 +59,18 @@ baseAPI<-function(call_url, query_wrapper){
 
   call_url<-gsub(' ', '%20', call_url)
 
-  response <- httr::GET(call_url, ua)
+  response <- tryCatch(httr::GET(call_url, ua),
+           error = function(e){
+             cat("Unexpected error, retrying one time in 10 seconds.")
+             Sys.sleep(10)
+             response <- tryCatch(response <- httr::GET(call_url),
+                      error = function(e){
+                        cat("Unexpected critical error.\n", e)
+                        stop()
+                      })
+             warning("Unexpected error, but it might be ok. Check results.")
+             return(response)
+           })
 
   # Warn if not 200 ((OK)) returned
   httr::warn_for_status(response)
