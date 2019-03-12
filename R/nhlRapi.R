@@ -59,6 +59,10 @@ baseAPI<-function(call_url, query_wrapper){
 
   call_url<-gsub(' ', '%20', call_url)
 
+  if(as.numeric(Sys.time()) %% 2 > 0.5){
+    Sys.sleep(1)
+  }
+
   response <- tryCatch(httr::GET(call_url, ua),
            error = function(e){
              cat("Unexpected error, retrying one time in 10 seconds.")
