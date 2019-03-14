@@ -20,7 +20,7 @@ getStatAPI <- function(query, modifiers = NULL) {
 
   call_url <- paste0(base_uri, query_wrapper)
 
-  return(baseAPI(call_url, query_wrapper, type = 'stat'))
+  return(baseAPI(call_url, query_wrapper))
 }
 
 #' Base getRecordAPI call
@@ -45,46 +45,92 @@ getRecordAPI <- function(query, modifiers = NULL) {
   }
 
   call_url <- paste0(base_uri, query_wrapper)
-  return(baseAPI(call_url, query_wrapper, type = 'record'))
+  return(baseAPI(call_url, query_wrapper))
 }
 
 #' Ultimate BASE api call.
 #'
 #' @param call_url the generated url to get
 #' @param query_wrapper specific query to api endpoint
-#' @param type stat or record, for S3 generation
 #'
 #' @return json response
-baseAPI<-function(call_url, query_wrapper, type){
+baseAPI<-function(call_url, query_wrapper){
   ua <- httr::user_agent("http://github.com/pbulsink/nhlRapi")
 
   call_url<-gsub(' ', '%20', call_url)
 
-  response <- httr::GET(call_url, ua)
+  if(as.numeric(Sys.time()) %% 2 > 0.5){
+    Sys.sleep(1)
+  }
 
-  # Stop if not 200 ((OK)) returned
-  httr::stop_for_status(response)
+  response <- tryCatch(httr::GET(call_url, ua),
+           error = function(e){
+             cat("Unexpected error, retrying one time in 10 seconds.")
+             Sys.sleep(10)
+             response <- tryCatch(response <- httr::GET(call_url),
+                      error = function(e){
+                        cat("Unexpected critical error.\n", e)
+                        stop()
+                      })
+             warning("Unexpected error, but it might be ok. Check results.")
+             return(response)
+           })
+
+  # Warn if not 200 ((OK)) returned
+  httr::warn_for_status(response)
 
   # Stops if not json returned.
-  stopifnot(httr::http_type(response) == "application/json")
+  #stopifnot(httr::http_type(response) == "application/json")
+  if(httr::http_type(response) != "application/json" | httr::status_code(response) >= 300) {
+    resp<-structure(
+      list(
+        data = paste0('Status: ', httr::status_code(response),
+                      "\nURL: ", call_url,
+                      "\nHTTP_Type: ", httr::http_type(response)),
+        path = query_wrapper,
+        error = TRUE,
+        response = response
+      ),
+      class = "nhl_api"
+    )
+    message('API did not return JSON as expected or suffered an error. Print output for more information')
+    return(resp)
+  }
 
   response_content <- rawToChar(httr::content(response,
                                               "raw"))
 
   json_response <- jsonlite::fromJSON(response_content)
 
-  #TODO: return S3. Need to rewrite tests?
-  # structure(
-  #   list(
-  #     content = json_response,
-  #     path = query_wrapper,
-  #     response = resp,
-  #     copywrite = json_response$copyright
-  #   ),
-  #   class = "nhl_api"
-  # )
+  copyright <- NULL
+  if ('copyright' %in% names(json_response)){
+    content<-json_response[names(json_response)!='copyright']
+    if(length(content) == 1) {
+      content<-content[[1]]
+    }
+    copyright <- json_response$copyright
+  } else if ('data' %in% names(json_response)){
+    content<-json_response$data
 
-  return(json_response)
+  } else {
+    content<-json_response
+  }
+
+  if(is.null(copyright)){
+    copyright <- sprintf("NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. \u00A9 NHL %s. All Rights Reserved.",
+                         strftime(Sys.Date(), format = '%Y'))
+  }
+
+  #Return S3 object nhl_api.
+  structure(
+    list(
+      data = content,
+      path = query_wrapper,
+      response = response,
+      copyright = copyright
+    ),
+    class = "nhl_api"
+  )
 }
 
 
@@ -99,14 +145,20 @@ getCopyright <- function() {
   return(response)
 }
 
-#TODO: Overload print when S3 object generated
-# print.nhl_api <- function(x, ...) {
-#   cat("<NHL ", x$path, ">\n", sep = "")
-#   str(x$content)
-#   invisible(x)
-# }
+#' Overload print when S3 object generated
+#'
+#' @param x nhl_api object
+#' @param ... other print overloads. Unused
+#'
+#' @export
+print.nhl_api <- function(x, ...) {
+  cat("<NHL ", x$path, ">\n", sep = "")
+  utils::str(x$data)
+  invisible(x)
+}
 
-#TODO: fix this bug:
+#TODO: Handle this bug error:
+#Sometimes happens for this call, but isn't call specific:
 #getAllTimeRecordVsFranchise(franchiseName = "Philadelphia Flyers")
 #
 #Error in curl::curl_fetch_memory(url, handle = handle) :

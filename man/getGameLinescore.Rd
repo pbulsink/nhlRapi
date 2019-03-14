@@ -7,11 +7,20 @@
 getGameLinescore(game)
 }
 \arguments{
-\item{game}{Required, get specific game boxscore.}
+\item{game}{Required, get specific game boxscore. Gamecode in format YYYYTTNNNN, with:
+\describe{
+  \item{\code{YYYY}}{Season of game, 2017 for 20172018 season}
+  \item{\code{TT}}{Type of game: Either 02 for regular season, or 03 for playoffs}
+  \item{\code{NNNN}}{Game number: from 0001 to 1230 (prior to 2017) or 0001 to 1271 (2017 and onwards)}
+}}
 }
 \value{
 The linescore output of the API
 }
 \description{
 Get a NHL game linescore. Includes goals, shots on goal, powerplay and goalie pulled status, number of skaters and shootout information if applicable
+}
+\examples{
+#Get NHL game linescore from last game of regular season 20172018
+linescore <- getGameLinescore(2017021271)
 }

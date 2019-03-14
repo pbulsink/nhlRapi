@@ -7,7 +7,12 @@
 getGameFeed(game, from = NULL)
 }
 \arguments{
-\item{game}{Required, get specific game feed}
+\item{game}{Required, get specific game feed. Gamecode in format YYYYTTNNNN, with:
+\describe{
+  \item{\code{YYYY}}{Season of game, 2017 for 20172018 season}
+  \item{\code{TT}}{Type of game: Either 02 for regular season, or 03 for playoffs}
+  \item{\code{NNNN}}{Game number: from 0001 to 1230 (prior to 2017) or 0001 to 1271 (2017 and onwards)}
+}}
 
 \item{from}{Time from which to update, format yyyymmdd_hhmmss}
 }
@@ -16,4 +21,8 @@ The feed API output of games
 }
 \description{
 Get a NHL game feed. Includes play by play data with event locations, and after-game info like 3 stars.
+}
+\examples{
+#Get the game feed from mid 20162017
+feed<-getGameFeed(2016020758)
 }
