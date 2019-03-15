@@ -44,7 +44,8 @@ getSeasonSchedule<-function(season){
                        teams.away.team.name = character(),
                        teams.away.team.id = integer(),
                        venue.name = character(),
-                       venue.id = numeric()
+                       venue.id = numeric(),
+                       status.detailedState = character()
                        )
 
   for (i in 1:nrow(sched$data$dates)){
@@ -56,11 +57,11 @@ getSeasonSchedule<-function(season){
     if(!"venue.id" %in% colnames(games)){
       games$venue.id <- NA
     }
-    games<-subset(games, select = c(date, gamePk, link, gameType, gameDate, teams.home.team.name, teams.home.team.id, teams.away.team.name, teams.away.team.id, venue.name, venue.id))
+    games<-subset(games, select = c(date, gamePk, link, gameType, gameDate, teams.home.team.name, teams.home.team.id, teams.away.team.name, teams.away.team.id, venue.name, venue.id, status.detailedState))
     schedule<-rbind(schedule, games)
   }
 
-  colnames(schedule) <- c("Date", "gameId", "gameLink", "gameType", "gameStartDateTime", "homeTeamName", "homeTeamId", "awayTeamName", "awayTeamId", "venueName", "venueId")
+  colnames(schedule) <- c("Date", "gameId", "gameLink", "gameType", "gameStartDateTime", "homeTeamName", "homeTeamId", "awayTeamName", "awayTeamId", "venueName", "venueId", "gameStatus")
 
   schedule$gameType <- as.numeric(ifelse(schedule$gameType == "PR", 1,
                                   ifelse(schedule$gameType == 'R', 2,
@@ -140,7 +141,4 @@ getSeasonScores<-function(season = NULL, schedule = NULL, progress_bar = TRUE){
   }
 
   return(scores)
-
 }
-
-# Get games
