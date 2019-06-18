@@ -2,7 +2,6 @@
 #'
 #' @description Get the NHL standings, including historical standings. Or, get one single standing
 #' @param standingsType Optional, get specific standing type. See \code{\link{getStandingsTypes}()} for allowed values
-#' @param date Get standings as of date. Must be coercable by \code{as.Date()}.
 #' @param season Get statndings for a specific season. If null, current season returned. Season should be in format 20172018. Overrides date specification.
 #' @param expand Whether to return detailed information from each team.
 #'
@@ -15,7 +14,7 @@
 #'
 #' #Get standings from 20182009
 #' standings <- getStandings(season = 20082009)
-getStandings <- function(standingsType = NULL, date = NULL, season = NULL, expand = FALSE) {
+getStandings <- function(standingsType = NULL, season = NULL, expand = FALSE) {
   if (!is.null(standingsType)) {
     # checks to prevent bad API calls from
     # progressing
@@ -34,12 +33,6 @@ getStandings <- function(standingsType = NULL, date = NULL, season = NULL, expan
   modifier <- NULL
   if (expand) {
     modifier <- c(modifier, "expand=standings.record")
-  }
-  if (!is.null(date)) {
-    stopifnot(length(date) == 1)
-    date <- as.Date(date)
-    modifier <- c(modifier, paste0("date=",
-      strftime(date, format = "%Y-%m-%d")))
   }
   if (!is.null(season)) {
     stopifnot(length(season) == 1)

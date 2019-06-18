@@ -12,11 +12,6 @@ test_that("Standings scape works", {
   expect_true("20172018" %in% q$data$season)
   expect_type(q$data$teamRecords, "list")
 
-  q <- getStandings(date = "2019-02-21")
-  expect_s3_class(q, 'nhl_api')
-  expect_equal(q$data$teamRecords[[1]]$points,
-    c(77, 75, 71, 70, 69, 63, 60, 56))
-
   q <- getStandings(standingsType = "wildCard",
     expand = TRUE)
   expect_s3_class(q, 'nhl_api')
