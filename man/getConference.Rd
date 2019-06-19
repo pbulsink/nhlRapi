@@ -17,5 +17,5 @@ Get the NHL conferences, including historical conferences. Or, get one single co
 }
 \examples{
 #See information on the NHL conferences:
-conferences<-getConference()
+conferences <- getConference()
 }

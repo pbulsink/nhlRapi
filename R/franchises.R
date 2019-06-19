@@ -167,7 +167,7 @@ getFranchiseDetail<-function(teamID = NULL, franchiseID = NULL){
 #' goalies <- getFranchiseGoalieRecords(franchiseName = "Ottawa Senators", active = TRUE)
 #'
 #' #Search for a Goalie
-#' lalime<-getFranchiseGoalieRecords(firstName = "Patrick", lastName = "Lalime")
+#' lalime <- getFranchiseGoalieRecords(firstName = "Patrick", lastName = "Lalime")
 getFranchiseGoalieRecords<-function(franchiseID = NULL, franchiseName = NULL, firstName = NULL, lastName = NULL, active = FALSE){
   stopifnot(is.logical(active))
   modifiers<-NULL

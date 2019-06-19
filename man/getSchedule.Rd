@@ -32,5 +32,5 @@ Get the NHL schedule for a team, a date (range) or with additional information.
 schedule<-getSchedule()
 
 #see the schedule linescores:
-linescores<-getSchedule(scheduleType = 'linescore')
+linescores <- getSchedule(scheduleType = 'linescore')
 }

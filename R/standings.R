@@ -57,7 +57,7 @@ getStandings <- function(standingsType = NULL, season = NULL, expand = FALSE) {
 #'
 #' @examples
 #' #Show the accepted standings types
-#' getStandingsTypes()
+#' standingTypes <- getStandingsTypes()
 getStandingsTypes <- function() {
   return(unname(unlist(getStatAPI("standingsTypes"))))
 }

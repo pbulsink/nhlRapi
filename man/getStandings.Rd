@@ -4,13 +4,10 @@
 \alias{getStandings}
 \title{Get Standing}
 \usage{
-getStandings(standingsType = NULL, date = NULL, season = NULL,
-  expand = FALSE)
+getStandings(standingsType = NULL, season = NULL, expand = FALSE)
 }
 \arguments{
 \item{standingsType}{Optional, get specific standing type. See \code{\link{getStandingsTypes}()} for allowed values}
-
-\item{date}{Get standings as of date. Must be coercable by \code{as.Date()}.}
 
 \item{season}{Get statndings for a specific season. If null, current season returned. Season should be in format 20172018. Overrides date specification.}
 

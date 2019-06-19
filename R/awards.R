@@ -12,7 +12,7 @@
 #' awards <- getAward()
 #'
 #' #Only get stanley Cup info
-#' getAward(award = 1)
+#' stanleycup <- getAward(award = 1)
 getAward <- function(award = NULL) {
   if (!is.null(award)) {
     # checks to prevent bad API calls from

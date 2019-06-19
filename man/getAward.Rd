@@ -20,5 +20,5 @@ Get the NHL awards, including historical awards. Or, get one single award
 awards <- getAward()
 
 #Only get stanley Cup info
-getAward(award = 1)
+stanleycup <- getAward(award = 1)
 }

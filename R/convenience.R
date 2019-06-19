@@ -34,18 +34,18 @@ getSeasonSchedule<-function(season){
     stop("Unknown error in downloding schedule.")
   }
 
-  schedule<-data.frame(date = character(),
-                       gamePk = integer(),
-                       link = character(),
-                       gameType = character(),
-                       gameDate = character(),
-                       teams.home.team.name = character(),
-                       teams.home.team.id = integer(),
-                       teams.away.team.name = character(),
-                       teams.away.team.id = integer(),
-                       venue.name = character(),
-                       venue.id = numeric(),
-                       status.detailedState = character()
+  schedule<-data.frame("date" = character(),
+                       "gamePk" = integer(),
+                       "link" = character(),
+                       "gameType" = character(),
+                       "gameDate" = character(),
+                       "teams.home.team.name" = character(),
+                       "teams.home.team.id" = integer(),
+                       "teams.away.team.name" = character(),
+                       "teams.away.team.id" = integer(),
+                       "venue.name" = character(),
+                       "venue.id" = numeric(),
+                       "status.detailedState" = character()
                        )
 
   for (i in 1:nrow(sched$data$dates)){
@@ -57,7 +57,7 @@ getSeasonSchedule<-function(season){
     if(!"venue.id" %in% colnames(games)){
       games$venue.id <- NA
     }
-    games<-subset(games, select = c(date, gamePk, link, gameType, gameDate, teams.home.team.name, teams.home.team.id, teams.away.team.name, teams.away.team.id, venue.name, venue.id, status.detailedState))
+    games<-games[,c("date", "gamePk", "link", "gameType", "gameDate", "teams.home.team.name", "teams.home.team.id", "teams.away.team.name", "teams.away.team.id", "venue.name", "venue.id", "status.detailedState")]
     schedule<-rbind(schedule, games)
   }
 
@@ -116,7 +116,7 @@ getSeasonScores<-function(season = NULL, schedule = NULL, progress_bar = TRUE){
   for(game in 1:nrow(scores[scores$Date <= Sys.Date() + 1, ])){
     linescore<-getGameLinescore(scores[game, 'gameId'])
     if(class(linescore) != 'nhl_api'){
-      stop("Error downloading score(s) for date ", scores$Date[i], ".")
+      stop("Error downloading score(s) for game ", scores$gameId[game], ".")
     }
     linescore<-linescore$data
     if(linescore$currentPeriod != 0){

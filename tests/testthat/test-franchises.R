@@ -81,9 +81,9 @@ test_that("franchise scrapings work", {
   expect_s3_class(q2, 'nhl_api')
   expect_equivalent(q$data, q2$data)
 
-  q<-getPlayoffRecordVsFranchise(franchiseID = 12)
+  q<-getPlayoffRecordVsFranchise(franchiseID = 36)
   expect_s3_class(q, 'nhl_api')
-  q2<-getPlayoffRecordVsFranchise(franchiseName = "Detroit Red Wings")
+  q2<-getPlayoffRecordVsFranchise(franchiseName = "Columbus Blue Jackets")
   expect_s3_class(q2, 'nhl_api')
   expect_equivalent(q$data, q2$data)
 

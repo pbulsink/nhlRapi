@@ -24,5 +24,5 @@ Get a NHL game feed. Includes play by play data with event locations, and after-
 }
 \examples{
 #Get the game feed from mid 20162017
-feed<-getGameFeed(2016020758)
+feed <- getGameFeed(2016020758)
 }

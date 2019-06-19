@@ -19,7 +19,7 @@
 #' schedule<-getSchedule()
 #'
 #' #see the schedule linescores:
-#' linescores<-getSchedule(scheduleType = 'linescore')
+#' linescores <- getSchedule(scheduleType = 'linescore')
 getSchedule <- function(team = NULL, startDate = NULL, endDate = NULL, scheduleType = NULL) {
   modifier <- NULL
 

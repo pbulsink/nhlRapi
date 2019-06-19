@@ -17,5 +17,5 @@ Get the NHL divisions, including historical divisions. Or, get one single divisi
 }
 \examples{
 #See information on NHL Divisions:
-divisions<-getDivision()
+divisions <- getDivision()
 }

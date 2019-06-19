@@ -81,7 +81,7 @@ getPlayerStats <- function(player, stat = NULL, season = NULL) {
 #'
 #' @examples
 #' #See the possible stat types:
-#' getPlayerStatTypes()
+#' statTypes <- getPlayerStatTypes()
 getPlayerStatTypes <- function() {
   return(unname(unlist(getStatAPI("statTypes"))))
 }
