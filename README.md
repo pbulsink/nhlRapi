@@ -47,7 +47,7 @@ The following items are covered by this API:
 - [X] Prospects
 - [X] Awards
 - [X] Venues
-- [ ] Tournaments (new)
+- [X] Tournaments (new)
 - [ ] Seasons (new)
 
 *Stats Types and Standings Types are modifiers for People Stats and Standings, respectively*
