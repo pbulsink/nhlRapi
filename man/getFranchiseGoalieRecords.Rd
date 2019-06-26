@@ -29,5 +29,5 @@ Returns goalie history and records. Includes career (with franchise) Win/Loss/Ti
 goalies <- getFranchiseGoalieRecords(franchiseName = "Ottawa Senators", active = TRUE)
 
 #Search for a Goalie
-lalime<-getFranchiseGoalieRecords(firstName = "Patrick", lastName = "Lalime")
+lalime <- getFranchiseGoalieRecords(firstName = "Patrick", lastName = "Lalime")
 }

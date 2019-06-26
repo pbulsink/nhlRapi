@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' #See information on the NHL conferences:
-#' conferences<-getConference()
+#' conferences <- getConference()
 getConference <- function(conference = NULL) {
   if (!is.null(conference)) {
     # checks to prevent bad API calls from

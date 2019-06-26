@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' #See information on NHL Divisions:
-#' divisions<-getDivision()
+#' divisions <- getDivision()
 getDivision <- function(division = NULL) {
   if (!is.null(division)) {
     # checks to prevent bad API calls from

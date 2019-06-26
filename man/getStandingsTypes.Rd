@@ -14,5 +14,5 @@ Only certain standings display types are accepted. This returns the full valid l
 }
 \examples{
 #Show the accepted standings types
-getStandingsTypes()
+standingTypes <- getStandingsTypes()
 }

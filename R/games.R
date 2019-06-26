@@ -27,6 +27,7 @@ getGameBoxscore <- function(game) {
   return(getStatAPI(query = query))
 }
 
+
 #' Get Game Linescore
 #'
 #' @description Get a NHL game linescore. Includes goals, shots on goal, powerplay and goalie pulled status, number of skaters and shootout information if applicable
@@ -55,6 +56,7 @@ getGameLinescore <- function(game) {
   return(getStatAPI(query = query))
 }
 
+
 #' Get Game Feed
 #'
 #' @description Get a NHL game feed. Includes play by play data with event locations, and after-game info like 3 stars.
@@ -71,7 +73,7 @@ getGameLinescore <- function(game) {
 #'
 #' @examples
 #' #Get the game feed from mid 20162017
-#' feed<-getGameFeed(2016020758)
+#' feed <- getGameFeed(2016020758)
 getGameFeed <- function(game, from = NULL) {
   # checks to prevent bad API calls from
   # progressing

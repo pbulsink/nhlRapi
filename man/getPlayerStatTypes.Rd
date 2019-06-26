@@ -14,5 +14,5 @@ Only certain stat types are accepted for players. This returns the full valid li
 }
 \examples{
 #See the possible stat types:
-getPlayerStatTypes()
+statTypes <- getPlayerStatTypes()
 }
