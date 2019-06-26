@@ -306,3 +306,16 @@ franchiseGeneric<-function(query, franchise = NULL, modifier = NULL){
   }
   return(getRecordAPI(query = query, modifiers = modifier))
 }
+
+#' Get Team Logos
+#'
+#' @description get Team Logo svg urls from NHL website
+#'
+#' @return a list of all team logo svg urls from the api
+#' @export
+#' @examples
+#' logos <- getTeamLogos()
+getTeamLogos <- function() {
+  query<-querybuilder(query='franchise?include=teams.logos')
+  return(getRecordAPI(query = query))
+}
